@@ -1,545 +1,1087 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Ravindra IAS — India's Premier UPSC Coaching Institute</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Ravindra IAS — India's Premier UPSC Coaching Institute</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <!-- ADVANCED BACKGROUND SYSTEM -->
 <canvas id="bgCanvas"></canvas>
 <div class="bg-gradient"></div>
 <div class="bg-glow"></div>
-<canvas id="galaxyCanvas"></canvas>
+
 <body>
 
-<div id="sp"></div>
+  <div id="sp"></div>
 
-<!-- SCROLL TO TOP -->
-<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+  <!-- SCROLL TO TOP -->
+  <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
-<!-- THEME TOGGLE -->
-<button id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle dark/light mode">🌙</button>
+  <!-- THEME TOGGLE -->
+  <button id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle dark/light mode">🌙</button>
 
-<!-- NOTICE BAR -->
-<div class="notice-bar" id="noticeBanner">
-  <div class="notice-inner">
-    <span class="nb-pill">🔥 Hot</span>
-    <p>Admissions Open: GS Foundation PCM 2027 — Limited Seats &nbsp;|&nbsp; <a href="#contact">Enroll Now →</a> &nbsp;|&nbsp; <strong>AIR 1 UPSC CSE 2024:</strong> Anuj Agnihotri — Our Student 🏆</p>
-    <button class="nb-close" onclick="document.getElementById('noticeBanner').style.display='none'">✕</button>
-  </div>
-</div>
-
-<!-- UTILITY BAR -->
-<div class="util-bar">
-  <div class="util-inner">
-    <div class="util-links">
-      <a onclick="openPdfModal('ca')">📰 Current Affairs</a>
-      <a onclick="openPdfModal('all')">📥 Free Downloads</a>
-      <a onclick="openQuizModal()">✏️ Daily MCQs</a>
-      <a href="#courses">📊 Test Series</a>
-      <a onclick="toast('🎥','Video Lectures coming soon!')">🎥 Video Lectures</a>
-    </div>
-    <div class="util-actions">
-      <button class="util-btn" onclick="toast('📞','Call us: +91-87501-87501')">📞 +91-87501-87501</button>
-      <button class="util-btn" onclick="toast('👤','Student Portal opening...')">👤 Student Login</button>
+  <!-- NOTICE BAR -->
+  <div class="notice-bar" id="noticeBanner">
+    <div class="notice-inner">
+      <span class="nb-pill">🔥 Hot</span>
+      <p>Admissions Open: GS Foundation PCM 2027 — Limited Seats &nbsp;|&nbsp; <a href="#contact">Enroll Now →</a>
+        &nbsp;|&nbsp; <strong>AIR 1 UPSC CSE 2024:</strong> Anuj Agnihotri — Our Student 🏆</p>
+      <button class="nb-close" onclick="document.getElementById('noticeBanner').style.display='none'">✕</button>
     </div>
   </div>
-</div>
 
-<!-- NAVBAR -->
-<header id="nav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="#">
-      <div class="logo-mark">R</div>
-      <div class="logo-text">
-        <span class="logo-name">Ravindra IAS</span>
-        <span class="logo-sub">UPSC Coaching Since 2009</span>
+  <!-- UTILITY BAR -->
+  <div class="util-bar">
+    <div class="util-inner">
+      <div class="util-links">
+        <a onclick="openPdfModal('ca')">📰 Current Affairs</a>
+        <a onclick="openPdfModal('all')">📥 Free Downloads</a>
+        <a onclick="openQuizModal()">✏️ Daily MCQs</a>
+        <a href="#courses">📊 Test Series</a>
+        <a onclick="toast('🎥','Video Lectures coming soon!')">🎥 Video Lectures</a>
       </div>
-    </a>
-    <nav class="nav-menu">
-      <div class="nav-item">
-        <span class="nav-link">Prelims <span class="nav-arr">▾</span></span>
-        <div class="nav-drop">
-          <div class="drop-section">Preparation</div>
-          <a href="#"><span class="di">▸</span> GS Prelims Strategy</a>
-          <a href="#"><span class="di">▸</span> CSAT Strategy & Notes</a>
-          <a href="#"><span class="di">▸</span> Prelims Syllabus</a>
-          <hr>
-          <div class="drop-section">Resources</div>
-          <a onclick="openPdfModal('test')"><span class="di">▸</span> All India Test Series</a>
-          <a onclick="openQuizModal()"><span class="di">▸</span> Daily Practice Quiz</a>
-          <a onclick="openPdfModal('mindmaps')"><span class="di">▸</span> Mind Maps (GS I–IV)</a>
-          <a onclick="openPdfModal('pyq')"><span class="di">▸</span> Previous Year Papers</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <span class="nav-link">Mains <span class="nav-arr">▾</span></span>
-        <div class="nav-drop">
-          <div class="drop-section">Strategy</div>
-          <a href="#"><span class="di">▸</span> Mains GS Strategy</a>
-          <a href="#"><span class="di">▸</span> Answer Writing Practice</a>
-          <a href="#"><span class="di">▸</span> Essay Preparation</a>
-          <a href="#"><span class="di">▸</span> Ethics & Case Studies</a>
-          <hr>
-          <div class="drop-section">Tests & Papers</div>
-          <a href="#courses"><span class="di">▸</span> Mains Test Series</a>
-          <a onclick="openPdfModal('pyq')"><span class="di">▸</span> Solved Papers 2015–24</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link" href="#courses">Courses <span class="nav-arr">▾</span></a>
-        <div class="nav-drop">
-          <a href="#courses"><span class="di">▸</span> GS Foundation PCM 2027</a>
-          <a href="#courses"><span class="di">▸</span> 2-Year Fledgling 2028</a>
-          <a href="#courses"><span class="di">▸</span> Mains Optional Subjects</a>
-          <a href="#courses"><span class="di">▸</span> Sure-Shot Test Series</a>
-          <a href="#courses"><span class="di">▸</span> StepUp Mentorship</a>
-          <a href="#courses"><span class="di">▸</span> Interview Preparation</a>
-        </div>
-      </div>
-      <a class="nav-link" href="#resources">Resources</a>
-      <a class="nav-link" href="#results">Results</a>
-      <a class="nav-link" href="#faculty">Faculty</a>
-      <a class="nav-link" href="#faq">FAQ</a>
-      <a class="nav-link nav-cta" href="#contact">Enroll Now</a>
-    </nav>
-    <div class="ham" id="hamBtn" onclick="toggleMob()"><span></span><span></span><span></span></div>
-  </div>
-</header>
-
-<!-- MOBILE DRAWER -->
-<div class="mob-overlay" id="mobOverlay" onclick="closeMob()"></div>
-<div class="mob-drawer" id="mobDrawer">
-  <div class="mob-head">
-    <div class="nav-logo"><div class="logo-mark" style="width:38px;height:38px;font-size:1.3rem;">R</div><span class="logo-name">Ravindra IAS</span></div>
-    <button class="mob-close" onclick="closeMob()">✕</button>
-  </div>
-  <div class="mob-nav">
-    <div class="mob-theme-row"><span>🎨 Theme</span><button class="mob-theme-btn" onclick="toggleTheme()" id="mobThemeBtn">Switch to Dark</button></div>
-    <a href="#about" onclick="closeMob()">About & Why Us <span>→</span></a>
-    <a href="#courses" onclick="closeMob()">Courses <span>→</span></a>
-    <a href="#results" onclick="closeMob()">Results & Toppers <span>→</span></a>
-    <a href="#resources" onclick="closeMob()">Study Resources <span>→</span></a>
-    <a href="#faculty" onclick="closeMob()">Faculty <span>→</span></a>
-    <a href="#news" onclick="closeMob()">Current Affairs <span>→</span></a>
-    <a onclick="closeMob();setTimeout(openQuizModal,200)">Daily Quiz ✏️ <span>→</span></a>
-    <a onclick="closeMob();setTimeout(()=>openPdfModal('all'),200)">Free Downloads 📥 <span>→</span></a>
-    <a href="#faq" onclick="closeMob()">FAQ <span>→</span></a>
-    <a href="#contact" onclick="closeMob()">Contact <span>→</span></a>
-  </div>
-  <a href="#contact" class="mob-cta" onclick="closeMob()">Enroll Now →</a>
-</div>
-
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-wrap">
-    <div class="ticker-badge">📢 Updates</div>
-    <div class="ticker-overflow">
-      <div class="ticker-track">
-        <div class="t-item">🏆 AIR 1 UPSC CSE 2024: Anuj Agnihotri — Ravindra IAS</div>
-        <div class="t-item">📢 GS Foundation PCM 2027 Admissions Open — Limited Seats</div>
-        <div class="t-item">🆕 2-Year Fledgling 2028 Batch Starting April 15</div>
-        <div class="t-item">📖 StepUp Mentorship 2027 — 1-on-1 Sessions Now Live</div>
-        <div class="t-item">🎯 Free Demo Class: Every Saturday 10 AM — Online + Offline</div>
-        <div class="t-item">📥 March 2026 Current Affairs Magazine — Available Now</div>
-        <div class="t-item">🏆 AIR 1 UPSC CSE 2024: Anuj Agnihotri — Ravindra IAS</div>
-        <div class="t-item">📢 GS Foundation PCM 2027 Admissions Open — Limited Seats</div>
-        <div class="t-item">🆕 2-Year Fledgling 2028 Batch Starting April 15</div>
-        <div class="t-item">📖 StepUp Mentorship 2027 — 1-on-1 Sessions Now Live</div>
-        <div class="t-item">🎯 Free Demo Class: Every Saturday 10 AM — Online + Offline</div>
-        <div class="t-item">📥 March 2026 Current Affairs Magazine — Available Now</div>
+      <div class="util-actions">
+        <button class="util-btn" onclick="toast('📞','Call us: +91-87501-87501')">📞 +91-87501-87501</button>
+        <button class="util-btn" onclick="toast('👤','Student Portal opening...')">👤 Student Login</button>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ═══════════ HERO ═══════════ -->
-<section id="hero">
-  <div class="hero-bg-circle c1"></div>
-  <div class="hero-bg-circle c2"></div>
-  <div class="hero-grid-lines"></div>
-  <div class="hero-inner">
-    <div class="fi">
-      <div class="hero-eyebrow"><div class="dot"></div><span>India's Most Trusted UPSC Institute — 15+ Years</span></div>
-      <h1 class="hero-h1">Your Path to<br><em><span class="type-wrap"><span id="typeEl"></span></span></em><br>Starts Here</h1>
-      <p class="hero-desc">15+ years of excellence, 1200+ selections, and a proven methodology trusted by aspirants across India. From Prelims to Interview — every stage, covered.</p>
-      <div class="hero-btns">
-        <a href="#courses" class="btn-red">Explore Courses →</a>
-        <a href="#contact" class="btn-ghost">Book Free Demo</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hs-item"><span class="hs-num" data-count="1200">0</span><span class="hs-lbl">Selections</span></div>
-        <div class="hs-item"><span class="hs-num" data-count="15">0</span><span class="hs-lbl">Years</span></div>
-        <div class="hs-item"><span class="hs-num" data-count="50">0</span><span class="hs-lbl">Faculty</span></div>
-        <div class="hs-item"><span class="hs-num" data-count="98">0</span><span class="hs-lbl">% Satisfied</span></div>
-      </div>
-    </div>
-    <div class="hero-right-col fi del-2">
-      <div class="hero-card">
-        <div class="hc-top">
-          <h3>🎯 Next Batch Starts In</h3>
-          <p>GS Foundation PCM 2027 — Reserve your seat before the deadline.</p>
-          <div class="cd-grid">
-            <div class="cd-box"><span class="cd-n" id="cd-d">00</span><span class="cd-l">Days</span></div>
-            <div class="cd-box"><span class="cd-n" id="cd-h">00</span><span class="cd-l">Hours</span></div>
-            <div class="cd-box"><span class="cd-n" id="cd-m">00</span><span class="cd-l">Mins</span></div>
-            <div class="cd-box"><span class="cd-n" id="cd-s">00</span><span class="cd-l">Secs</span></div>
-          </div>
-          <a href="#contact" class="reserve-btn">Reserve Your Seat →</a>
+  <!-- NAVBAR -->
+  <header id="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#">
+        <div class="logo-mark">R</div>
+        <div class="logo-text">
+          <span class="logo-name">Ravindra IAS</span>
+          <span class="logo-sub">UPSC Coaching Since 2009</span>
         </div>
-        <div class="hc-body">
-          <div class="hc-chips">
-            <div class="hchip">✓ AIR 1, 2, 4 — 2024</div>
-            <div class="hchip">✓ 8 Top-10 Ranks</div>
-            <div class="hchip">✓ ISO Certified</div>
-            <div class="hchip">✓ Online + Offline</div>
-          </div>
-          <div class="hc-quick">
-            <h4>Quick Info</h4>
-            <div class="quick-row"><span>Duration</span><strong>10 Months</strong></div>
-            <div class="quick-row"><span>Mode</span><strong>Classroom + Live Online</strong></div>
-            <div class="quick-row"><span>Fee</span><strong>₹1,20,000</strong></div>
-            <div class="quick-row"><span>Scholarship</span><strong>Up to 75%</strong></div>
+      </a>
+      <nav class="nav-menu">
+        <div class="nav-item">
+          <span class="nav-link">Prelims <span class="nav-arr">▾</span></span>
+          <div class="nav-drop">
+            <div class="drop-section">Preparation</div>
+            <a href="#"><span class="di">▸</span> GS Prelims Strategy</a>
+            <a href="#"><span class="di">▸</span> CSAT Strategy & Notes</a>
+            <a href="#"><span class="di">▸</span> Prelims Syllabus</a>
+            <hr>
+            <div class="drop-section">Resources</div>
+            <a onclick="openPdfModal('test')"><span class="di">▸</span> All India Test Series</a>
+            <a onclick="openQuizModal()"><span class="di">▸</span> Daily Practice Quiz</a>
+            <a onclick="openPdfModal('mindmaps')"><span class="di">▸</span> Mind Maps (GS I–IV)</a>
+            <a onclick="openPdfModal('pyq')"><span class="di">▸</span> Previous Year Papers</a>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CA QUICK ACCESS BAR -->
-<div id="ca-bar">
-  <div class="ca-inner">
-    <div class="ca-item" onclick="openPdfModal('ca')"><span class="ca-icon-wrap">📰</span><h4>Daily News</h4><p>Today's Editorials</p><span class="ca-pill">LIVE</span></div>
-    <div class="ca-item" onclick="openQuizModal()"><span class="ca-icon-wrap">✏️</span><h4>Daily MCQs</h4><p>10 Questions / Day</p><span class="ca-pill">500+ Q Bank</span></div>
-    <div class="ca-item" onclick="toast('📊','Answer Writing Portal opening...')"><span class="ca-icon-wrap">📊</span><h4>Answer Writing</h4><p>Daily Mains Practice</p><span class="ca-pill">Daily Q</span></div>
-    <div class="ca-item" onclick="openPdfModal('mindmaps')"><span class="ca-icon-wrap">🗺️</span><h4>Mind Maps</h4><p>GS Paper I–IV</p><span class="ca-pill">200+ Maps</span></div>
-    <div class="ca-item" onclick="openPdfModal('all')"><span class="ca-icon-wrap">📥</span><h4>Free Downloads</h4><p>NCERT, PYQs, Notes</p><span class="ca-pill">500+ PDFs</span></div>
-  </div>
-</div>
-
-<!-- COURSES -->
-<section id="courses" class="section bg-off">
-  <div class="container">
-    <div class="sec-head fi">
-      <div class="sec-tag">Our Programmes</div>
-      <h2 class="sec-h2">Courses for <em>Every Stage</em> of UPSC</h2>
-      <div class="red-line"></div>
-      <p class="sec-p">Meticulously designed programmes — from foundation to interview, structured to take you all the way.</p>
-    </div>
-    <div class="course-tabs">
-      <div class="ctab active" onclick="filterTab('all',this)">All Courses</div>
-      <div class="ctab" onclick="filterTab('foundation',this)">GS Foundation</div>
-      <div class="ctab" onclick="filterTab('mains',this)">Mains & Optional</div>
-      <div class="ctab" onclick="filterTab('test',this)">Test Series</div>
-      <div class="ctab" onclick="filterTab('interview',this)">Interview Prep</div>
-    </div>
-    <div class="courses-grid" id="cGrid">
-      <div class="course-card fi" data-cat="foundation"><div class="cc-head"><span class="cc-badge b-hot">🔥 Most Popular</span><div class="cc-icon">📘</div><h3>GS Foundation PCM 2027</h3><div class="cc-tags"><span class="cc-tag">Classroom</span><span class="cc-tag">Live Online</span><span class="cc-tag">10 Months</span></div></div><div class="cc-body"><p>Complete Prelims-cum-Mains programme — from NCERT basics to Mains-level analysis across all GS papers, CSAT, Ethics, and Essay.</p><div class="cc-feats"><div class="cc-feat"><span class="chk">✓</span> 800+ hours of live teaching sessions</div><div class="cc-feat"><span class="chk">✓</span> Integrated Prelims + Mains Test Series</div><div class="cc-feat"><span class="chk">✓</span> Monthly Current Affairs magazine included</div><div class="cc-feat"><span class="chk">✓</span> Personal mentor assigned from Day 1</div></div></div><div class="cc-foot"><div class="cc-price">₹1,20,000 <small>/ full course</small></div><button class="btn-enroll" onclick="toast('📘','GS Foundation brochure loading!')">Enroll Now</button></div></div>
-      <div class="course-card fi del-1" data-cat="foundation"><div class="cc-head"><span class="cc-badge b-new">✨ New Batch</span><div class="cc-icon">📗</div><h3>2-Year GS Fledgling 2028</h3><div class="cc-tags"><span class="cc-tag">Classroom</span><span class="cc-tag">Online</span><span class="cc-tag">2 Years</span></div></div><div class="cc-body"><p>For fresh graduates and early starters. Two-year immersive programme building conceptual foundations then advancing to Mains-level mastery.</p><div class="cc-feats"><div class="cc-feat"><span class="chk">✓</span> NCERT to advanced level coverage</div><div class="cc-feat"><span class="chk">✓</span> Weekly answer writing workshops</div><div class="cc-feat"><span class="chk">✓</span> Full 2-year mentorship included</div><div class="cc-feat"><span class="chk">✓</span> Scholarship test available on enroll</div></div></div><div class="cc-foot"><div class="cc-price">₹1,80,000 <small>/ full course</small></div><button class="btn-enroll" onclick="toast('📗','Fledgling batch details loading!')">Enroll Now</button></div></div>
-      <div class="course-card fi del-2" data-cat="mains"><div class="cc-head"><div class="cc-icon">📙</div><h3>Mains Optional Subjects</h3><div class="cc-tags"><span class="cc-tag">4.5 Months</span><span class="cc-tag">4 Subjects</span></div></div><div class="cc-body"><p>Specialized coaching for Sociology, PSIR, Geography, and Anthropology with extensive answer writing practice and test series.</p><div class="cc-feats"><div class="cc-feat"><span class="chk">✓</span> Sociology / PSIR / Geo / Anthropology</div><div class="cc-feat"><span class="chk">✓</span> 5 Full-length tests per subject</div><div class="cc-feat"><span class="chk">✓</span> Individual answer evaluation</div><div class="cc-feat"><span class="chk">✓</span> Dedicated PYQ sessions included</div></div></div><div class="cc-foot"><div class="cc-price">₹55,000 <small>/ per subject</small></div><button class="btn-enroll" onclick="toast('📙','Optional subject details loading!')">Enroll Now</button></div></div>
-      <div class="course-card fi" data-cat="test"><div class="cc-head"><span class="cc-badge b-fast">⚡ Filling Fast</span><div class="cc-icon">📊</div><h3>Sure-Shot Test Series</h3><div class="cc-tags"><span class="cc-tag">Prelims</span><span class="cc-tag">Mains</span><span class="cc-tag">AIR Rank</span></div></div><div class="cc-body"><p>All-India test series with detailed model answers, percentile ranking, performance analytics, and one-on-one feedback from senior evaluators.</p><div class="cc-feats"><div class="cc-feat"><span class="chk">✓</span> 25 Prelims + 8 Mains full tests</div><div class="cc-feat"><span class="chk">✓</span> All-India rank and percentile</div><div class="cc-feat"><span class="chk">✓</span> Sectional topic-wise tests</div><div class="cc-feat"><span class="chk">✓</span> Evaluator feedback on every answer</div></div></div><div class="cc-foot"><div class="cc-price">₹18,000 <small>/ series</small></div><button class="btn-enroll" onclick="openQuizModal()">Try Free Quiz</button></div></div>
-      <div class="course-card fi del-1" data-cat="foundation"><div class="cc-head"><div class="cc-icon">🧭</div><h3>StepUp Mentorship 2027</h3><div class="cc-tags"><span class="cc-tag">1-on-1</span><span class="cc-tag">Bi-weekly</span></div></div><div class="cc-body"><p>Personalized strategic mentorship from IAS/IPS officers. Study planning, answer writing improvement, psychological resilience, and interview prep.</p><div class="cc-feats"><div class="cc-feat"><span class="chk">✓</span> Dedicated mentor from Day 1</div><div class="cc-feat"><span class="chk">✓</span> Fortnightly 1-on-1 strategy calls</div><div class="cc-feat"><span class="chk">✓</span> Personalized study planner</div><div class="cc-feat"><span class="chk">✓</span> Progress dashboard access</div></div></div><div class="cc-foot"><div class="cc-price">₹35,000 <small>/ year</small></div><button class="btn-enroll" onclick="toast('🧭','Mentorship details loading!')">Enroll Now</button></div></div>
-      <div class="course-card fi del-2" data-cat="interview"><div class="cc-head"><div class="cc-icon">🎤</div><h3>Interview Preparation</h3><div class="cc-tags"><span class="cc-tag">Mock Board</span><span class="cc-tag">DAF Analysis</span></div></div><div class="cc-body"><p>Intensive Personality Test prep with mock interviews by former UPSC board members, DAF workshops, and personality grooming sessions.</p><div class="cc-feats"><div class="cc-feat"><span class="chk">✓</span> 5+ mock board interviews</div><div class="cc-feat"><span class="chk">✓</span> Former UPSC board panelists</div><div class="cc-feat"><span class="chk">✓</span> Deep-dive DAF analysis sessions</div><div class="cc-feat"><span class="chk">✓</span> Communication & personality grooming</div></div></div><div class="cc-foot"><div class="cc-price">₹22,000 <small>/ programme</small></div><button class="btn-enroll" onclick="toast('🎤','Interview prep brochure loading!')">Enroll Now</button></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- NEWS -->
-<section id="news" class="section">
-  <div class="container">
-    <div class="sec-head fi">
-      <div class="sec-tag">Daily Updates</div>
-      <h2 class="sec-h2">Today's <em>Current Affairs</em></h2>
-      <div class="red-line"></div>
-    </div>
-    <div class="news-layout">
-      <div class="news-panel fi">
-        <div class="news-panel-head"><h3>📰 News & Editorials — March 28, 2026</h3><span class="view-all-btn" onclick="openPdfModal('ca')">View All →</span></div>
-        <div class="news-item" onclick="openPdfModal('ca')"><div class="ni-date">Mar 28</div><div class="ni-body"><h4>India's GDP Growth Projected at 6.8% for FY2026-27 — IMF Report</h4><p>IMF released its latest World Economic Outlook projecting India as fastest-growing major economy for the third consecutive year.</p><span class="ni-tag t-eco">Economy</span></div></div>
-        <div class="news-item" onclick="openPdfModal('ca')"><div class="ni-date">Mar 28</div><div class="ni-body"><h4>Supreme Court Landmark Ruling on Electoral Bond Transparency</h4><p>Constitution Bench delivered a unanimous verdict expanding disclosure requirements for political party funding mechanisms nationwide.</p><span class="ni-tag t-polity">Polity</span></div></div>
-        <div class="news-item" onclick="openPdfModal('ca')"><div class="ni-date">Mar 27</div><div class="ni-body"><h4>India-US 2+2 Dialogue: Outcomes on Defence, Tech & Space Cooperation</h4><p>Fourth ministerial dialogue yielded agreements on defence tech transfer, semiconductor manufacturing, and deep space cooperation.</p><span class="ni-tag t-intl">International</span></div></div>
-        <div class="news-item" onclick="openPdfModal('ca')"><div class="ni-date">Mar 27</div><div class="ni-body"><h4>NGT Orders Review of Coastal Regulation Zone Implementation</h4><p>The NGT bench directed the Ministry of Environment to submit compliance report on CRZ notification across all coastal states within 8 weeks.</p><span class="ni-tag t-env">Environment</span></div></div>
-        <div class="news-item" onclick="openPdfModal('ca')"><div class="ni-date">Mar 26</div><div class="ni-body"><h4>ISRO Successfully Tests Reusable Launch Vehicle — RLV-LEX 03</h4><p>RLV technology demonstrator completed its third autonomous landing experiment, marking a critical milestone in India's reusable space programme.</p><span class="ni-tag t-sci">Science & Tech</span></div></div>
-      </div>
-      <div class="news-sidebar fi del-1">
-        <div class="quiz-card"><h4>🧠 Daily UPSC Quiz</h4><p>Test your knowledge with today's 10 current affairs questions curated by our experts.</p><button class="quiz-btn" onclick="openQuizModal()">Start Today's Quiz →</button></div>
-        <div class="sb-card">
-          <div class="sb-head">📥 Free Downloads</div>
-          <div class="sb-body">
-            <div class="sb-link" onclick="openPdfModal('ca')">March 2026 CA Magazine <span class="sb-arr">↓</span></div>
-            <div class="sb-link" onclick="openPdfModal('ncert')">NCERT Books Class 6–12 <span class="sb-arr">↓</span></div>
-            <div class="sb-link" onclick="openPdfModal('pyq')">UPSC PYQ Papers 2015–24 <span class="sb-arr">↓</span></div>
-            <div class="sb-link" onclick="openPdfModal('yojana')">Yojana & Kurukshetra Archive <span class="sb-arr">↓</span></div>
-            <div class="sb-link" onclick="openPdfModal('ethics')">Ethics Case Studies PDF <span class="sb-arr">↓</span></div>
+        <div class="nav-item">
+          <span class="nav-link">Mains <span class="nav-arr">▾</span></span>
+          <div class="nav-drop">
+            <div class="drop-section">Strategy</div>
+            <a href="#"><span class="di">▸</span> Mains GS Strategy</a>
+            <a href="#"><span class="di">▸</span> Answer Writing Practice</a>
+            <a href="#"><span class="di">▸</span> Essay Preparation</a>
+            <a href="#"><span class="di">▸</span> Ethics & Case Studies</a>
+            <hr>
+            <div class="drop-section">Tests & Papers</div>
+            <a href="#courses"><span class="di">▸</span> Mains Test Series</a>
+            <a onclick="openPdfModal('pyq')"><span class="di">▸</span> Solved Papers 2015–24</a>
           </div>
         </div>
-        <div class="sb-card">
-          <div class="sb-head">📌 Quick Access</div>
-          <div class="sb-body">
-            <div class="sb-link" onclick="openPdfModal('mindmaps')">GS Mind Maps (Paper I–IV) <span class="sb-arr">→</span></div>
-            <div class="sb-link" onclick="openPdfModal('notes')">To The Point Notes <span class="sb-arr">→</span></div>
-            <div class="sb-link" onclick="openPdfModal('prs')">PRS Legislative Capsule <span class="sb-arr">→</span></div>
-            <div class="sb-link" onclick="openPdfModal('infographics')">GS Infographics Library <span class="sb-arr">→</span></div>
+        <div class="nav-item">
+          <a class="nav-link" href="#courses">Courses <span class="nav-arr">▾</span></a>
+          <div class="nav-drop">
+            <a href="#courses"><span class="di">▸</span> GS Foundation PCM 2027</a>
+            <a href="#courses"><span class="di">▸</span> 2-Year Fledgling 2028</a>
+            <a href="#courses"><span class="di">▸</span> Mains Optional Subjects</a>
+            <a href="#courses"><span class="di">▸</span> Sure-Shot Test Series</a>
+            <a href="#courses"><span class="di">▸</span> StepUp Mentorship</a>
+            <a href="#courses"><span class="di">▸</span> Interview Preparation</a>
           </div>
         </div>
+        <a class="nav-link" href="#resources">Resources</a>
+        <a class="nav-link" href="#results">Results</a>
+        <a class="nav-link" href="#faculty">Faculty</a>
+        <a class="nav-link" href="#faq">FAQ</a>
+        <a class="nav-link nav-cta" href="#contact">Enroll Now</a>
+      </nav>
+      <div class="ham" id="hamBtn" onclick="toggleMob()"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mob-overlay" id="mobOverlay" onclick="closeMob()"></div>
+  <div class="mob-drawer" id="mobDrawer">
+    <div class="mob-head">
+      <div class="nav-logo">
+        <div class="logo-mark" style="width:38px;height:38px;font-size:1.3rem;">R</div><span class="logo-name">Ravindra
+          IAS</span>
       </div>
+      <button class="mob-close" onclick="closeMob()">✕</button>
     </div>
+    <div class="mob-nav">
+      <div class="mob-theme-row"><span>🎨 Theme</span><button class="mob-theme-btn" onclick="toggleTheme()"
+          id="mobThemeBtn">Switch to Dark</button></div>
+      <a href="#about" onclick="closeMob()">About & Why Us <span>→</span></a>
+      <a href="#courses" onclick="closeMob()">Courses <span>→</span></a>
+      <a href="#results" onclick="closeMob()">Results & Toppers <span>→</span></a>
+      <a href="#resources" onclick="closeMob()">Study Resources <span>→</span></a>
+      <a href="#faculty" onclick="closeMob()">Faculty <span>→</span></a>
+      <a href="#news" onclick="closeMob()">Current Affairs <span>→</span></a>
+      <a onclick="closeMob();setTimeout(openQuizModal,200)">Daily Quiz ✏️ <span>→</span></a>
+      <a onclick="closeMob();setTimeout(()=>openPdfModal('all'),200)">Free Downloads 📥 <span>→</span></a>
+      <a href="#faq" onclick="closeMob()">FAQ <span>→</span></a>
+      <a href="#contact" onclick="closeMob()">Contact <span>→</span></a>
+    </div>
+    <a href="#contact" class="mob-cta" onclick="closeMob()">Enroll Now →</a>
   </div>
-</section>
 
-<!-- TOPPERS -->
-<section id="results" class="section bg-off">
-  <div class="container">
-    <div class="sec-head fi">
-      <div class="sec-tag">Hall of Fame</div>
-      <h2 class="sec-h2">Our <em>Toppers</em> — UPSC CSE 2024</h2>
-      <div class="red-line"></div>
-      <p class="sec-p">Every rank is proof of the Ravindra method. 8 top-10 ranks in a single year.</p>
-    </div>
-    <div class="toppers-outer fi">
-      <div class="toppers-track" id="tTrack">
-        <div class="topper-card"><div class="rank-badge r-gold">🥇 AIR 1</div><div class="tc-avatar av1">A</div><div class="tc-name">Anuj Agnihotri</div><div class="tc-rank">All India Rank — 1</div><div class="tc-state">New Delhi</div><div class="tc-service">Indian Administrative Service</div><div class="tc-quote">"The structured approach at Ravindra IAS — especially the mentorship sessions — transformed how I approached every single answer."</div></div>
-        <div class="topper-card"><div class="rank-badge r-silver">🥈 AIR 2</div><div class="tc-avatar av2">R</div><div class="tc-name">Rajeshwari M.</div><div class="tc-rank">All India Rank — 2</div><div class="tc-state">Chennai, Tamil Nadu</div><div class="tc-service">Indian Administrative Service</div><div class="tc-quote">"GS Foundation PCM covered everything with precision. The faculty here are more than teachers — they are life mentors."</div></div>
-        <div class="topper-card"><div class="rank-badge r-bronze">🥉 AIR 4</div><div class="tc-avatar av3">R</div><div class="tc-name">Raghav Joshi</div><div class="tc-rank">All India Rank — 4</div><div class="tc-state">Jaipur, Rajasthan</div><div class="tc-service">Indian Police Service</div><div class="tc-quote">"The Sure-Shot Test Series is a game-changer. Real exam pressure, honest feedback after every single test."</div></div>
-        <div class="topper-card"><div class="rank-badge r-other">AIR 5</div><div class="tc-avatar av4">I</div><div class="tc-name">Ishan Bhatnagar</div><div class="tc-rank">All India Rank — 5</div><div class="tc-state">Pune, Maharashtra</div><div class="tc-service">Indian Foreign Service</div><div class="tc-quote">"Two years with Ravindra IAS gave me depth in every subject. The essay and ethics sessions were truly exceptional."</div></div>
-        <div class="topper-card"><div class="rank-badge r-other">AIR 9</div><div class="tc-avatar av5">P</div><div class="tc-name">Priya Nair</div><div class="tc-rank">All India Rank — 9</div><div class="tc-state">Thiruvananthapuram</div><div class="tc-service">Indian Administrative Service</div><div class="tc-quote">"Daily CA practice and answer writing workshops raised my Mains score from 700 to 840 in a single cycle."</div></div>
-        <div class="topper-card"><div class="rank-badge r-other">AIR 12</div><div class="tc-avatar av6">S</div><div class="tc-name">Sameer Khanna</div><div class="tc-rank">All India Rank — 12</div><div class="tc-state">Amritsar, Punjab</div><div class="tc-service">Indian Revenue Service</div><div class="tc-quote">"Failed twice before joining here. Personalized mentorship identified exactly what was holding me back."</div></div>
-      </div>
-    </div>
-    <div class="slider-ctrl fi">
-      <button class="sl-btn" onclick="slideTo(-1)">←</button>
-      <div class="sl-dots" id="slDots"></div>
-      <button class="sl-btn" onclick="slideTo(1)">→</button>
-    </div>
-    <div class="results-strip fi">
-      <div class="rs-cell"><span class="rs-num" data-count="1200">0</span><span class="rs-lbl">Total Selections</span></div>
-      <div class="rs-cell"><span class="rs-num" data-count="8">0</span><span class="rs-lbl">Top-10 Ranks 2024</span></div>
-      <div class="rs-cell"><span class="rs-num" data-count="150">0</span><span class="rs-lbl">Avg. Selections/Year</span></div>
-      <div class="rs-cell"><span class="rs-num" data-count="15">0</span><span class="rs-lbl">Years of Results</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section id="about" class="section">
-  <div class="container">
-    <div class="sec-head fi"><div class="sec-tag">Why Choose Us</div><h2 class="sec-h2">The <em>Ravindra Advantage</em></h2><div class="red-line"></div><p class="sec-p">What sets us apart — backed by 15 years of consistent, verifiable results.</p></div>
-    <div class="why-grid">
-      <div class="why-card fi"><div class="wc-icon wi-red">🏆</div><h4>Unmatched Track Record</h4><p>1200+ civil servants across IAS, IPS, IFS and allied services. 8 top-10 ranks in 2024 alone — 15 consecutive years of proven, documented results.</p></div>
-      <div class="why-card fi del-1"><div class="wc-icon wi-blue">👨‍🏫</div><h4>Expert Faculty Panel</h4><p>50+ subject matter experts including former IAS/IPS officers, retired bureaucrats, and domain academics — UPSC veterans who've seen it all from both sides.</p></div>
-      <div class="why-card fi del-2"><div class="wc-icon wi-green">🎯</div><h4>Personalized Mentorship</h4><p>Every student gets a dedicated mentor — fortnightly 1-on-1 sessions with strategy refinement, answer evaluation, and psychological support throughout.</p></div>
-      <div class="why-card fi"><div class="wc-icon wi-gold">📊</div><h4>Data-Driven Strategy</h4><p>15 years of UPSC pattern analysis drives our topic prioritization, test frequency, and syllabus depth — eliminating guesswork completely from your preparation.</p></div>
-      <div class="why-card fi del-1"><div class="wc-icon wi-red">📱</div><h4>Seamless Hybrid Learning</h4><p>Classroom + LIVE online + recorded lectures on our mobile app. Study anywhere, anytime — even fully offline with downloadable content library.</p></div>
-      <div class="why-card fi del-2"><div class="wc-icon wi-blue">💰</div><h4>Scholarships & EMI Options</h4><p>Merit scholarships up to 75%, zero-cost EMI, and special fee waivers for SC/ST/OBC, women aspirants, defence families, and repeat attempt candidates.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- RESOURCES -->
-<section id="resources" class="section bg-grey">
-  <div class="container">
-    <div class="sec-head fi"><div class="sec-tag">Study Resources</div><h2 class="sec-h2">Your Complete <em>Learning Arsenal</em></h2><div class="red-line"></div><p class="sec-p">Every resource you need — curated by UPSC experts, updated regularly, always at your fingertips.</p></div>
-    <div class="res-grid">
-      <div class="res-card fi" onclick="openPdfModal('ca')"><span class="res-icon">📰</span><h4>Current Affairs Magazine</h4><p>Monthly compilation of The Hindu, IE, PIB, Yojana — distilled with UPSC relevance tags and Mains linkages.</p><span class="res-tag">Monthly PDF</span></div>
-      <div class="res-card fi del-1" onclick="openPdfModal('notes')"><span class="res-icon">📝</span><h4>GS Notes Library</h4><p>450+ topic-wise notes covering all 4 GS papers — updated for 2026 with the latest syllabus mapping.</p><span class="res-tag">450+ Topics</span></div>
-      <div class="res-card fi del-2" onclick="toast('📹','Video portal opening...')"><span class="res-icon">📹</span><h4>Video Lectures</h4><p>2000+ hours of recorded lectures by expert faculty — downloadable and available offline via the mobile app.</p><span class="res-tag">2000+ Hours</span></div>
-      <div class="res-card fi del-3" onclick="openPdfModal('pyq')"><span class="res-icon">📋</span><h4>PYQ Analysis</h4><p>10-year PYQ papers with model answers, topic frequency analysis, and examiner expectation breakdowns.</p><span class="res-tag">Free PDF</span></div>
-      <div class="res-card fi" onclick="openPdfModal('mindmaps')"><span class="res-icon">🗺️</span><h4>Mind Maps</h4><p>200+ visual mind maps for GS Papers I–IV making complex, interlinking topics easy to revise quickly.</p><span class="res-tag">200+ Maps</span></div>
-      <div class="res-card fi del-1" onclick="openQuizModal()"><span class="res-icon">✏️</span><h4>Daily Quiz & MCQs</h4><p>500+ question bank with new daily MCQs on current affairs and static GS — track accuracy and compare with peers.</p><span class="res-tag">Daily Updated</span></div>
-      <div class="res-card fi del-2" onclick="openPdfModal('all')"><span class="res-icon">📥</span><h4>Free Downloads</h4><p>NCERT Books (6–12), NIOS material, IGNOU content, Yojana archives, PRS Capsule, government reports — all free.</p><span class="res-tag">500+ PDFs Free</span></div>
-      <div class="res-card fi del-3" onclick="openQuizModal()"><span class="res-icon">📊</span><h4>AI Test Portal</h4><p>AI-powered platform with real-time analytics, rank prediction, weak-area detection, and comparative peer insights.</p><span class="res-tag">AI-Powered</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- FACULTY -->
-<section id="faculty" class="section">
-  <div class="container">
-    <div class="sec-head fi"><div class="sec-tag">Expert Team</div><h2 class="sec-h2">Meet Our <em>Distinguished Faculty</em></h2><div class="red-line"></div><p class="sec-p">Former civil servants, top academics, and UPSC specialists — all committed to your success.</p></div>
-    <div class="faculty-grid">
-      <div class="fac-card fi"><div class="fac-head"><div class="fac-av">👨‍💼</div><div class="fac-name">Dr. Ravindra Singh</div><div class="fac-role">Founder & Director</div></div><div class="fac-body"><p class="fac-bio">Former IAS Officer (1998 batch, MP cadre). Ph.D. Public Administration, JNU. 25+ years in policy-making and administration. Personally mentored 300+ UPSC rank holders since founding the institute in 2009.</p><div class="fac-subjects"><span class="fs">Polity & Governance</span><span class="fs">Essay Writing</span><span class="fs">Ethics</span><span class="fs">Prelims Strategy</span></div><div class="fac-exp">⭐ 25+ Years Experience</div><div class="fac-demo-btn" onclick="toast('🎬','Demo lecture opening...')">Watch Demo Lecture →</div></div></div>
-      <div class="fac-card fi del-1"><div class="fac-head"><div class="fac-av">👩‍🏫</div><div class="fac-name">Prof. Meena Kumari</div><div class="fac-role">Economy & Environment Head</div></div><div class="fac-body"><p class="fac-bio">Former Economic Adviser, Ministry of Finance. M.A. Economics, Delhi School of Economics. Authored 3 books on Indian economic policy. Guest lecturer at IIM Ahmedabad and IIPA.</p><div class="fac-subjects"><span class="fs">Indian Economy</span><span class="fs">Environment</span><span class="fs">Science & Tech</span><span class="fs">GS Paper III</span></div><div class="fac-exp">⭐ 18+ Years Experience</div><div class="fac-demo-btn" onclick="toast('🎬','Demo lecture opening...')">Watch Demo Lecture →</div></div></div>
-      <div class="fac-card fi del-2"><div class="fac-head"><div class="fac-av">👨‍✈️</div><div class="fac-name">Col. Arjun Mehta (Retd.)</div><div class="fac-role">Security & IR Faculty</div></div><div class="fac-body"><p class="fac-bio">Retired Indian Army Colonel, specialist in strategic affairs. Former faculty at National Defence College. Expert in India's foreign policy, security strategy, and the PSIR optional subject.</p><div class="fac-subjects"><span class="fs">International Relations</span><span class="fs">Security Studies</span><span class="fs">PSIR Optional</span><span class="fs">Defence Policy</span></div><div class="fac-exp">⭐ 22+ Years Experience</div><div class="fac-demo-btn" onclick="toast('🎬','Demo lecture opening...')">Watch Demo Lecture →</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="section bg-off">
-  <div class="container">
-    <div class="sec-head fi"><div class="sec-tag">Student Voices</div><h2 class="sec-h2">What Our <em>Students Say</em></h2><div class="red-line"></div></div>
-    <div class="test-grid">
-      <div class="test-card fi"><div class="stars">★★★★★</div><div class="test-q">"The mentorship at Ravindra IAS is unmatched. My mentor reviewed every answer I wrote and gave brutally honest, actionable feedback. That level of personal attention is incredibly rare."</div><div class="test-author"><div class="ta-av av1">V</div><div><div class="ta-name">Vandana Singh</div><div class="ta-det">AIR 18 · IAS · UPSC CSE 2024</div></div></div></div>
-      <div class="test-card fi del-1"><div class="stars">★★★★★</div><div class="test-q">"I was a working professional with only 5–6 hours daily. Ravindra IAS's recorded lectures and weekend doubt sessions made it possible to crack UPSC in my very first attempt."</div><div class="test-author"><div class="ta-av av3">K</div><div><div class="ta-name">Karthik Rajan</div><div class="ta-det">AIR 31 · IPS · UPSC CSE 2024</div></div></div></div>
-      <div class="test-card fi del-2"><div class="stars">★★★★★</div><div class="test-q">"The current affairs magazine saves me 2–3 hours daily. Every article maps to specific UPSC topics with Mains angle suggestions — it is an absolute game-changer for preparation."</div><div class="test-author"><div class="ta-av av4">N</div><div><div class="ta-name">Neha Aggarwal</div><div class="ta-det">AIR 47 · IRS · UPSC CSE 2023</div></div></div></div>
-    </div>
-    <div class="app-banner fi">
-      <div><div class="ab-h">📱 Learn On the Go</div><p class="ab-p">Download the Ravindra IAS app — all lectures, tests, current affairs, and mentor chat from your phone, even offline.</p><div class="ab-btns"><div class="ab-btn" onclick="toast('📱','Google Play Store opening...')">▶ Google Play</div><div class="ab-btn" onclick="toast('🍎','App Store opening...')"> App Store</div><div class="ab-btn" onclick="toast('💻','Student Portal opening...')">🌐 Student Portal</div></div></div>
-      <div class="ab-icon">📱</div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq" class="section">
-  <div class="container">
-    <div class="sec-head fi"><div class="sec-tag">Help Center</div><h2 class="sec-h2">Frequently Asked <em>Questions</em></h2><div class="red-line"></div></div>
-    <div class="faq-wrap fi">
-      <div class="faq-controls">
-        <div class="faq-search"><input type="text" id="faqSearch" placeholder="🔍 Search for a question..."></div>
-        <div class="faq-add">
-          <input type="text" id="newQ" placeholder="Enter your question...">
-          <input type="text" id="newA" placeholder="Enter the answer...">
-          <button class="faq-add-btn" id="addFaqBtn">+ Add FAQ</button>
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-wrap">
+      <div class="ticker-badge">📢 Updates</div>
+      <div class="ticker-overflow">
+        <div class="ticker-track">
+          <div class="t-item">🏆 AIR 1 UPSC CSE 2024: Anuj Agnihotri — Ravindra IAS</div>
+          <div class="t-item">📢 GS Foundation PCM 2027 Admissions Open — Limited Seats</div>
+          <div class="t-item">🆕 2-Year Fledgling 2028 Batch Starting April 15</div>
+          <div class="t-item">📖 StepUp Mentorship 2027 — 1-on-1 Sessions Now Live</div>
+          <div class="t-item">🎯 Free Demo Class: Every Saturday 10 AM — Online + Offline</div>
+          <div class="t-item">📥 March 2026 Current Affairs Magazine — Available Now</div>
+          <div class="t-item">🏆 AIR 1 UPSC CSE 2024: Anuj Agnihotri — Ravindra IAS</div>
+          <div class="t-item">📢 GS Foundation PCM 2027 Admissions Open — Limited Seats</div>
+          <div class="t-item">🆕 2-Year Fledgling 2028 Batch Starting April 15</div>
+          <div class="t-item">📖 StepUp Mentorship 2027 — 1-on-1 Sessions Now Live</div>
+          <div class="t-item">🎯 Free Demo Class: Every Saturday 10 AM — Online + Offline</div>
+          <div class="t-item">📥 March 2026 Current Affairs Magazine — Available Now</div>
         </div>
-        <p class="faq-no-result" id="faqNoResult">❌ No matching questions found.</p>
-      </div>
-      <div class="faq-list" id="faqList">
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the duration of the GS Foundation PCM course? <span class="faq-ico">+</span></div><div class="faq-a"><p>The GS Foundation Prelims-cum-Mains course spans 10 months covering the complete UPSC CSE syllabus — NCERTs, all 4 GS Papers, CSAT, Essay, and Ethics — with an integrated Prelims and Mains Test Series throughout.</p></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are online classes interactive or just recorded? <span class="faq-ico">+</span></div><div class="faq-a"><p>All LIVE online sessions are fully interactive with real-time Q&A via chat or audio, polls, and dedicated doubt-clearing sessions. Classes are also recorded and available for 6-month replay access on our student portal and app.</p></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What study materials are included in the course? <span class="faq-ico">+</span></div><div class="faq-a"><p>Students receive: (1) Printed GS notes covering 450+ topics, (2) Monthly Current Affairs magazine, (3) PYQ compilation with model answers, (4) Mind maps for GS I–IV, and (5) Full digital access to 2000+ video lectures, daily quiz bank, and our online test portal.</p></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are scholarships available? How do I apply? <span class="faq-ico">+</span></div><div class="faq-a"><p>Yes. We offer merit scholarships of 25%, 50%, or 75% based on our entrance scholarship test. Special concessions for SC/ST/OBC candidates, women aspirants, defence families, and repeat attempt candidates. Contact us through the enrollment form for scholarship test details.</p></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What optional subjects are offered? <span class="faq-ico">+</span></div><div class="faq-a"><p>We currently offer specialized 4.5-month optional programmes in: Sociology, Political Science & IR (PSIR), Geography, and Anthropology. Each includes teaching sessions, 5 full-length tests, individual answer evaluation, and PYQ discussion sessions.</p></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How is mentorship structured at Ravindra IAS? <span class="faq-ico">+</span></div><div class="faq-a"><p>Every enrolled student is assigned a dedicated mentor within the first week — typically a senior faculty member or cleared civil servant. Fortnightly 45-minute 1-on-1 sessions covering progress review, study plan refinement, answer writing evaluation, and motivation throughout preparation.</p></div></div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- CONTACT -->
-<section id="contact" class="section bg-off">
-  <div class="container">
-    <div class="sec-head fi"><div class="sec-tag">Admissions Open</div><h2 class="sec-h2">Begin Your <em>UPSC Journey</em> Today</h2><div class="red-line"></div><p class="sec-p">Enroll now or book a free demo class. Our counsellors will contact you within 24 hours.</p></div>
-    <div class="contact-grid">
+  <!-- ═══════════ HERO ═══════════ -->
+  <section id="hero">
+    <div class="hero-bg-circle c1"></div>
+    <div class="hero-bg-circle c2"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-inner">
       <div class="fi">
-        <h3 style="font-family:var(--ff-serif);font-size:1.35rem;color:var(--text);margin-bottom:1.2rem;">📍 Our Campuses</h3>
-        <div class="campus-cards">
-          <div class="campus-card"><h4>🏛️ New Delhi — Head Office</h4><p>1-B/7, Pusa Road, Old Rajinder Nagar, New Delhi — 110060</p><div class="phone">📞 +91-11-4560-7890 &nbsp;|&nbsp; Mon–Sat: 8 AM – 8 PM</div></div>
-          <div class="campus-card"><h4>🏛️ Chennai Branch</h4><p>No. 63, Police Commissioner Office Road, Egmore, Chennai — 600008</p><div class="phone">📞 +91-44-4560-1234 &nbsp;|&nbsp; Mon–Sat: 9 AM – 7 PM</div></div>
-          <div class="campus-card"><h4>🏛️ Bangalore Branch</h4><p>No. 12, Cunningham Road, Near MG Road, Bengaluru — 560052</p><div class="phone">📞 +91-80-4560-5678 &nbsp;|&nbsp; Mon–Sat: 9 AM – 7 PM</div></div>
-          <div class="campus-card"><h4>🏛️ Indore Branch</h4><p>14, South Tukoganj, Near Rajwada, Indore — 452001, M.P.</p><div class="phone">📞 +91-73-1234-5678 &nbsp;|&nbsp; Mon–Sat: 9 AM – 7 PM</div></div>
+        <div class="hero-eyebrow">
+          <div class="dot"></div><span>India's Most Trusted UPSC Institute — 15+ Years</span>
         </div>
-        <div class="socials">
-          <div class="soc-btn" onclick="toast('📘','Facebook...')">📘</div>
-          <div class="soc-btn" onclick="toast('📸','Instagram...')">📸</div>
-          <div class="soc-btn" onclick="toast('▶️','YouTube...')">▶️</div>
-          <div class="soc-btn" onclick="toast('💬','Telegram...')">💬</div>
-          <div class="soc-btn" onclick="toast('🐦','Twitter/X...')">🐦</div>
-          <div class="soc-btn" onclick="toast('💼','LinkedIn...')">💼</div>
+        <h1 class="hero-h1">Your Path to<br><em><span class="type-wrap"><span id="typeEl"></span></span></em><br>Starts
+          Here</h1>
+        <p class="hero-desc">15+ years of excellence, 1200+ selections, and a proven methodology trusted by aspirants
+          across India. From Prelims to Interview — every stage, covered.</p>
+        <div class="hero-btns">
+          <a href="#courses" class="btn-red">Explore Courses →</a>
+          <a href="#contact" class="btn-ghost">Book Free Demo</a>
         </div>
-      </div>
-      <div class="form-box fi del-1">
-        <h3>📋 Enroll / Request Demo</h3>
-        <form id="enrollForm" onsubmit="handleForm(event)">
-          <div class="form-row">
-            <div class="fg"><label>First Name</label><input type="text" required placeholder="Rahul"></div>
-            <div class="fg"><label>Last Name</label><input type="text" required placeholder="Sharma"></div>
+        <div class="hero-stats">
+          <div class="hs-item"><span class="hs-num" data-count="1200">0</span><span class="hs-lbl">Selections</span>
           </div>
-          <div class="fg"><label>Email Address</label><input type="email" required placeholder="rahul@example.com"></div>
-          <div class="fg"><label>Phone Number</label><input type="tel" required placeholder="+91 98765 43210"></div>
-          <div class="fg"><label>Select Programme</label>
-            <select required>
-              <option value="" disabled selected>Choose a programme</option>
-              <option>GS Foundation PCM 2027</option>
-              <option>2-Year GS Fledgling 2028</option>
-              <option>Mains Optional Subjects</option>
-              <option>Sure-Shot Test Series</option>
-              <option>StepUp Mentorship</option>
-              <option>Interview Preparation</option>
-            </select>
+          <div class="hs-item"><span class="hs-num" data-count="15">0</span><span class="hs-lbl">Years</span></div>
+          <div class="hs-item"><span class="hs-num" data-count="50">0</span><span class="hs-lbl">Faculty</span></div>
+          <div class="hs-item"><span class="hs-num" data-count="98">0</span><span class="hs-lbl">% Satisfied</span>
           </div>
-          <div class="fg"><label>Learning Mode</label>
-            <select>
-              <option value="" disabled selected>Select mode</option>
-              <option>Classroom (Offline)</option>
-              <option>Live Online</option>
-              <option>Hybrid (Both)</option>
-            </select>
-          </div>
-          <div class="fg"><label>Message (Optional)</label><textarea placeholder="Any specific queries, preferred batch timing, or scholarship enquiries..."></textarea></div>
-          <button type="submit" class="submit-btn" id="subBtn">Submit & Request Demo →</button>
-          <div class="success-bar" id="sucBar">✅ Received! Our counsellor will call you within 24 hours.</div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<div class="footer-main">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="fb-brand">
-        <div class="nav-logo" style="margin-bottom:.75rem;"><div class="logo-mark">R</div><div class="logo-text"><span class="logo-name" style="color:#fff;">Ravindra IAS</span><span class="logo-sub">UPSC Excellence Since 2009</span></div></div>
-        <p>India's most trusted UPSC coaching institute. 1200+ civil servants, 15 years of excellence, and a commitment to accessible quality preparation for every aspirant across India.</p>
-        <div class="fb-social">
-          <div class="fb-soc" onclick="toast('📘','Facebook...')">📘</div>
-          <div class="fb-soc" onclick="toast('📸','Instagram...')">📸</div>
-          <div class="fb-soc" onclick="toast('▶️','YouTube...')">▶️</div>
-          <div class="fb-soc" onclick="toast('💬','Telegram...')">💬</div>
         </div>
       </div>
-      <div class="fc"><h5>Quick Links</h5><ul><li><a href="#about">About Us</a></li><li><a href="#courses">Courses</a></li><li><a href="#results">Results</a></li><li><a href="#resources">Resources</a></li><li><a href="#faculty">Faculty</a></li><li><a href="#faq">FAQ</a></li></ul></div>
-      <div class="fc"><h5>Programmes</h5><ul><li><a href="#courses">GS Foundation PCM</a></li><li><a href="#courses">2-Year Fledgling</a></li><li><a href="#courses">Optional Subjects</a></li><li><a href="#courses">Test Series</a></li><li><a href="#courses">Mentorship</a></li><li><a href="#courses">Interview Prep</a></li></ul></div>
-      <div class="fc"><h5>Contact Us</h5><ul><li><a href="#">📞 +91-87501-87501</a></li><li><a href="#">✉️ info@ravindraiasacademy.com</a></li><li><a href="#">📍 Old Rajinder Nagar, Delhi</a></li><li><a href="#">📍 Egmore, Chennai</a></li><li><a href="#">📍 MG Road, Bangalore</a></li><li><a href="#">📍 South Tukoganj, Indore</a></li></ul></div>
-    </div>
-  </div>
-</div>
-<div class="footer-bottom">
-  <div class="fb-inner">
-    <p class="fb-copy">© 2026 Ravindra IAS Academy Pvt. Ltd. All Rights Reserved.</p>
-    <div class="fb-links">
-      <a href="#" onclick="toast('📄','Privacy Policy...')">Privacy Policy</a>
-      <a href="#" onclick="toast('📄','Terms of Use...')">Terms of Use</a>
-      <a href="#" onclick="toast('💰','Refund Policy...')">Refund Policy</a>
-    </div>
-  </div>
-</div>
-
-<!-- TOAST -->
-<div class="toast" id="toastEl"><span class="toast-icon" id="toastIco">✅</span><span id="toastTxt"></span></div>
-
-<!-- ═══════════ QUIZ MODAL ═══════════ -->
-<div class="modal-overlay" id="quizModal" onclick="closeOnBg(event,'quizModal')">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h3 id="quizModalTitle">🧠 Daily UPSC Quiz — March 28</h3>
-      <button class="modal-close" onclick="closeModal('quizModal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div id="quizContainer"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════ PDF MODAL ═══════════ -->
-<div class="modal-overlay" id="pdfModal" onclick="closeOnBg(event,'pdfModal')">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h3 id="pdfModalTitle">📥 Free Downloads</h3>
-      <button class="modal-close" onclick="closeModal('pdfModal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <!-- FILE LIST VIEW -->
-      <div id="pdfListView">
-        <div class="pdf-list" id="pdfList"></div>
-      </div>
-      <!-- PDF CONTENT VIEW -->
-      <div class="pdf-viewer" id="pdfViewer">
-        <div class="pdf-viewer-head">
-          <button class="pdf-back" onclick="showPdfList()">← Back to List</button>
-          <span class="pdf-viewer-title" id="pdfViewerTitle"></span>
+      <div class="hero-right-col fi del-2">
+        <div class="hero-card">
+          <div class="hc-top">
+            <h3>🎯 Next Batch Starts In</h3>
+            <p>GS Foundation PCM 2027 — Reserve your seat before the deadline.</p>
+            <div class="cd-grid">
+              <div class="cd-box"><span class="cd-n" id="cd-d">00</span><span class="cd-l">Days</span></div>
+              <div class="cd-box"><span class="cd-n" id="cd-h">00</span><span class="cd-l">Hours</span></div>
+              <div class="cd-box"><span class="cd-n" id="cd-m">00</span><span class="cd-l">Mins</span></div>
+              <div class="cd-box"><span class="cd-n" id="cd-s">00</span><span class="cd-l">Secs</span></div>
+            </div>
+            <a href="#contact" class="reserve-btn">Reserve Your Seat →</a>
+          </div>
+          <div class="hc-body">
+            <div class="hc-chips">
+              <div class="hchip">✓ AIR 1, 2, 4 — 2024</div>
+              <div class="hchip">✓ 8 Top-10 Ranks</div>
+              <div class="hchip">✓ ISO Certified</div>
+              <div class="hchip">✓ Online + Offline</div>
+            </div>
+            <div class="hc-quick">
+              <h4>Quick Info</h4>
+              <div class="quick-row"><span>Duration</span><strong>10 Months</strong></div>
+              <div class="quick-row"><span>Mode</span><strong>Classroom + Live Online</strong></div>
+              <div class="quick-row"><span>Fee</span><strong>₹1,20,000</strong></div>
+              <div class="quick-row"><span>Scholarship</span><strong>Up to 75%</strong></div>
+            </div>
+          </div>
         </div>
-        <div class="pdf-content" id="pdfViewerContent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CA QUICK ACCESS BAR -->
+  <div id="ca-bar">
+    <div class="ca-inner">
+      <div class="ca-item" onclick="openPdfModal('ca')"><span class="ca-icon-wrap">📰</span>
+        <h4>Daily News</h4>
+        <p>Today's Editorials</p><span class="ca-pill">LIVE</span>
+      </div>
+      <div class="ca-item" onclick="openQuizModal()"><span class="ca-icon-wrap">✏️</span>
+        <h4>Daily MCQs</h4>
+        <p>10 Questions / Day</p><span class="ca-pill">500+ Q Bank</span>
+      </div>
+      <div class="ca-item" onclick="toast('📊','Answer Writing Portal opening...')"><span class="ca-icon-wrap">📊</span>
+        <h4>Answer Writing</h4>
+        <p>Daily Mains Practice</p><span class="ca-pill">Daily Q</span>
+      </div>
+      <div class="ca-item" onclick="openPdfModal('mindmaps')"><span class="ca-icon-wrap">🗺️</span>
+        <h4>Mind Maps</h4>
+        <p>GS Paper I–IV</p><span class="ca-pill">200+ Maps</span>
+      </div>
+      <div class="ca-item" onclick="openPdfModal('all')"><span class="ca-icon-wrap">📥</span>
+        <h4>Free Downloads</h4>
+        <p>NCERT, PYQs, Notes</p><span class="ca-pill">500+ PDFs</span>
       </div>
     </div>
   </div>
-</div>
-<script src="script.js"></script>
+
+  <!-- COURSES -->
+  <section id="courses" class="section bg-off">
+    <div class="container">
+      <div class="sec-head fi">
+        <div class="sec-tag">Our Programmes</div>
+        <h2 class="sec-h2">Courses for <em>Every Stage</em> of UPSC</h2>
+        <div class="red-line"></div>
+        <p class="sec-p">Meticulously designed programmes — from foundation to interview, structured to take you all the
+          way.</p>
+      </div>
+      <div class="course-tabs">
+        <div class="ctab active" onclick="filterTab('all',this)">All Courses</div>
+        <div class="ctab" onclick="filterTab('foundation',this)">GS Foundation</div>
+        <div class="ctab" onclick="filterTab('mains',this)">Mains & Optional</div>
+        <div class="ctab" onclick="filterTab('test',this)">Test Series</div>
+        <div class="ctab" onclick="filterTab('interview',this)">Interview Prep</div>
+      </div>
+      <div class="courses-grid" id="cGrid">
+        <div class="course-card fi" data-cat="foundation">
+          <div class="cc-head"><span class="cc-badge b-hot">🔥 Most Popular</span>
+            <div class="cc-icon">📘</div>
+            <h3>GS Foundation PCM 2027</h3>
+            <div class="cc-tags"><span class="cc-tag">Classroom</span><span class="cc-tag">Live Online</span><span
+                class="cc-tag">10 Months</span></div>
+          </div>
+          <div class="cc-body">
+            <p>Complete Prelims-cum-Mains programme — from NCERT basics to Mains-level analysis across all GS papers,
+              CSAT, Ethics, and Essay.</p>
+            <div class="cc-feats">
+              <div class="cc-feat"><span class="chk">✓</span> 800+ hours of live teaching sessions</div>
+              <div class="cc-feat"><span class="chk">✓</span> Integrated Prelims + Mains Test Series</div>
+              <div class="cc-feat"><span class="chk">✓</span> Monthly Current Affairs magazine included</div>
+              <div class="cc-feat"><span class="chk">✓</span> Personal mentor assigned from Day 1</div>
+            </div>
+          </div>
+          <div class="cc-foot">
+            <div class="cc-price">₹1,20,000 <small>/ full course</small></div><button class="btn-enroll"
+              onclick="toast('📘','GS Foundation brochure loading!')">Enroll Now</button>
+          </div>
+        </div>
+        <div class="course-card fi del-1" data-cat="foundation">
+          <div class="cc-head"><span class="cc-badge b-new">✨ New Batch</span>
+            <div class="cc-icon">📗</div>
+            <h3>2-Year GS Fledgling 2028</h3>
+            <div class="cc-tags"><span class="cc-tag">Classroom</span><span class="cc-tag">Online</span><span
+                class="cc-tag">2 Years</span></div>
+          </div>
+          <div class="cc-body">
+            <p>For fresh graduates and early starters. Two-year immersive programme building conceptual foundations then
+              advancing to Mains-level mastery.</p>
+            <div class="cc-feats">
+              <div class="cc-feat"><span class="chk">✓</span> NCERT to advanced level coverage</div>
+              <div class="cc-feat"><span class="chk">✓</span> Weekly answer writing workshops</div>
+              <div class="cc-feat"><span class="chk">✓</span> Full 2-year mentorship included</div>
+              <div class="cc-feat"><span class="chk">✓</span> Scholarship test available on enroll</div>
+            </div>
+          </div>
+          <div class="cc-foot">
+            <div class="cc-price">₹1,80,000 <small>/ full course</small></div><button class="btn-enroll"
+              onclick="toast('📗','Fledgling batch details loading!')">Enroll Now</button>
+          </div>
+        </div>
+        <div class="course-card fi del-2" data-cat="mains">
+          <div class="cc-head">
+            <div class="cc-icon">📙</div>
+            <h3>Mains Optional Subjects</h3>
+            <div class="cc-tags"><span class="cc-tag">4.5 Months</span><span class="cc-tag">4 Subjects</span></div>
+          </div>
+          <div class="cc-body">
+            <p>Specialized coaching for Sociology, PSIR, Geography, and Anthropology with extensive answer writing
+              practice and test series.</p>
+            <div class="cc-feats">
+              <div class="cc-feat"><span class="chk">✓</span> Sociology / PSIR / Geo / Anthropology</div>
+              <div class="cc-feat"><span class="chk">✓</span> 5 Full-length tests per subject</div>
+              <div class="cc-feat"><span class="chk">✓</span> Individual answer evaluation</div>
+              <div class="cc-feat"><span class="chk">✓</span> Dedicated PYQ sessions included</div>
+            </div>
+          </div>
+          <div class="cc-foot">
+            <div class="cc-price">₹55,000 <small>/ per subject</small></div><button class="btn-enroll"
+              onclick="toast('📙','Optional subject details loading!')">Enroll Now</button>
+          </div>
+        </div>
+        <div class="course-card fi" data-cat="test">
+          <div class="cc-head"><span class="cc-badge b-fast">⚡ Filling Fast</span>
+            <div class="cc-icon">📊</div>
+            <h3>Sure-Shot Test Series</h3>
+            <div class="cc-tags"><span class="cc-tag">Prelims</span><span class="cc-tag">Mains</span><span
+                class="cc-tag">AIR Rank</span></div>
+          </div>
+          <div class="cc-body">
+            <p>All-India test series with detailed model answers, percentile ranking, performance analytics, and
+              one-on-one feedback from senior evaluators.</p>
+            <div class="cc-feats">
+              <div class="cc-feat"><span class="chk">✓</span> 25 Prelims + 8 Mains full tests</div>
+              <div class="cc-feat"><span class="chk">✓</span> All-India rank and percentile</div>
+              <div class="cc-feat"><span class="chk">✓</span> Sectional topic-wise tests</div>
+              <div class="cc-feat"><span class="chk">✓</span> Evaluator feedback on every answer</div>
+            </div>
+          </div>
+          <div class="cc-foot">
+            <div class="cc-price">₹18,000 <small>/ series</small></div><button class="btn-enroll"
+              onclick="openQuizModal()">Try Free Quiz</button>
+          </div>
+        </div>
+        <div class="course-card fi del-1" data-cat="foundation">
+          <div class="cc-head">
+            <div class="cc-icon">🧭</div>
+            <h3>StepUp Mentorship 2027</h3>
+            <div class="cc-tags"><span class="cc-tag">1-on-1</span><span class="cc-tag">Bi-weekly</span></div>
+          </div>
+          <div class="cc-body">
+            <p>Personalized strategic mentorship from IAS/IPS officers. Study planning, answer writing improvement,
+              psychological resilience, and interview prep.</p>
+            <div class="cc-feats">
+              <div class="cc-feat"><span class="chk">✓</span> Dedicated mentor from Day 1</div>
+              <div class="cc-feat"><span class="chk">✓</span> Fortnightly 1-on-1 strategy calls</div>
+              <div class="cc-feat"><span class="chk">✓</span> Personalized study planner</div>
+              <div class="cc-feat"><span class="chk">✓</span> Progress dashboard access</div>
+            </div>
+          </div>
+          <div class="cc-foot">
+            <div class="cc-price">₹35,000 <small>/ year</small></div><button class="btn-enroll"
+              onclick="toast('🧭','Mentorship details loading!')">Enroll Now</button>
+          </div>
+        </div>
+        <div class="course-card fi del-2" data-cat="interview">
+          <div class="cc-head">
+            <div class="cc-icon">🎤</div>
+            <h3>Interview Preparation</h3>
+            <div class="cc-tags"><span class="cc-tag">Mock Board</span><span class="cc-tag">DAF Analysis</span></div>
+          </div>
+          <div class="cc-body">
+            <p>Intensive Personality Test prep with mock interviews by former UPSC board members, DAF workshops, and
+              personality grooming sessions.</p>
+            <div class="cc-feats">
+              <div class="cc-feat"><span class="chk">✓</span> 5+ mock board interviews</div>
+              <div class="cc-feat"><span class="chk">✓</span> Former UPSC board panelists</div>
+              <div class="cc-feat"><span class="chk">✓</span> Deep-dive DAF analysis sessions</div>
+              <div class="cc-feat"><span class="chk">✓</span> Communication & personality grooming</div>
+            </div>
+          </div>
+          <div class="cc-foot">
+            <div class="cc-price">₹22,000 <small>/ programme</small></div><button class="btn-enroll"
+              onclick="toast('🎤','Interview prep brochure loading!')">Enroll Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section id="news" class="section">
+    <div class="container">
+      <div class="sec-head fi">
+        <div class="sec-tag">Daily Updates</div>
+        <h2 class="sec-h2">Today's <em>Current Affairs</em></h2>
+        <div class="red-line"></div>
+      </div>
+      <div class="news-layout">
+        <div class="news-panel fi">
+          <div class="news-panel-head">
+            <h3>📰 News & Editorials — March 28, 2026</h3><span class="view-all-btn" onclick="openPdfModal('ca')">View
+              All →</span>
+          </div>
+          <div class="news-item" onclick="openPdfModal('ca')">
+            <div class="ni-date">Mar 28</div>
+            <div class="ni-body">
+              <h4>India's GDP Growth Projected at 6.8% for FY2026-27 — IMF Report</h4>
+              <p>IMF released its latest World Economic Outlook projecting India as fastest-growing major economy for
+                the third consecutive year.</p><span class="ni-tag t-eco">Economy</span>
+            </div>
+          </div>
+          <div class="news-item" onclick="openPdfModal('ca')">
+            <div class="ni-date">Mar 28</div>
+            <div class="ni-body">
+              <h4>Supreme Court Landmark Ruling on Electoral Bond Transparency</h4>
+              <p>Constitution Bench delivered a unanimous verdict expanding disclosure requirements for political party
+                funding mechanisms nationwide.</p><span class="ni-tag t-polity">Polity</span>
+            </div>
+          </div>
+          <div class="news-item" onclick="openPdfModal('ca')">
+            <div class="ni-date">Mar 27</div>
+            <div class="ni-body">
+              <h4>India-US 2+2 Dialogue: Outcomes on Defence, Tech & Space Cooperation</h4>
+              <p>Fourth ministerial dialogue yielded agreements on defence tech transfer, semiconductor manufacturing,
+                and deep space cooperation.</p><span class="ni-tag t-intl">International</span>
+            </div>
+          </div>
+          <div class="news-item" onclick="openPdfModal('ca')">
+            <div class="ni-date">Mar 27</div>
+            <div class="ni-body">
+              <h4>NGT Orders Review of Coastal Regulation Zone Implementation</h4>
+              <p>The NGT bench directed the Ministry of Environment to submit compliance report on CRZ notification
+                across all coastal states within 8 weeks.</p><span class="ni-tag t-env">Environment</span>
+            </div>
+          </div>
+          <div class="news-item" onclick="openPdfModal('ca')">
+            <div class="ni-date">Mar 26</div>
+            <div class="ni-body">
+              <h4>ISRO Successfully Tests Reusable Launch Vehicle — RLV-LEX 03</h4>
+              <p>RLV technology demonstrator completed its third autonomous landing experiment, marking a critical
+                milestone in India's reusable space programme.</p><span class="ni-tag t-sci">Science & Tech</span>
+            </div>
+          </div>
+        </div>
+        <div class="news-sidebar fi del-1">
+          <div class="quiz-card">
+            <h4>🧠 Daily UPSC Quiz</h4>
+            <p>Test your knowledge with today's 10 current affairs questions curated by our experts.</p><button
+              class="quiz-btn" onclick="openQuizModal()">Start Today's Quiz →</button>
+          </div>
+          <div class="sb-card">
+            <div class="sb-head">📥 Free Downloads</div>
+            <div class="sb-body">
+              <div class="sb-link" onclick="openPdfModal('ca')">March 2026 CA Magazine <span class="sb-arr">↓</span>
+              </div>
+              <div class="sb-link" onclick="openPdfModal('ncert')">NCERT Books Class 6–12 <span class="sb-arr">↓</span>
+              </div>
+              <div class="sb-link" onclick="openPdfModal('pyq')">UPSC PYQ Papers 2015–24 <span class="sb-arr">↓</span>
+              </div>
+              <div class="sb-link" onclick="openPdfModal('yojana')">Yojana & Kurukshetra Archive <span
+                  class="sb-arr">↓</span></div>
+              <div class="sb-link" onclick="openPdfModal('ethics')">Ethics Case Studies PDF <span
+                  class="sb-arr">↓</span></div>
+            </div>
+          </div>
+          <div class="sb-card">
+            <div class="sb-head">📌 Quick Access</div>
+            <div class="sb-body">
+              <div class="sb-link" onclick="openPdfModal('mindmaps')">GS Mind Maps (Paper I–IV) <span
+                  class="sb-arr">→</span></div>
+              <div class="sb-link" onclick="openPdfModal('notes')">To The Point Notes <span class="sb-arr">→</span>
+              </div>
+              <div class="sb-link" onclick="openPdfModal('prs')">PRS Legislative Capsule <span class="sb-arr">→</span>
+              </div>
+              <div class="sb-link" onclick="openPdfModal('infographics')">GS Infographics Library <span
+                  class="sb-arr">→</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPPERS -->
+  <section id="results" class="section bg-off">
+    <div class="container">
+      <div class="sec-head fi">
+        <div class="sec-tag">Hall of Fame</div>
+        <h2 class="sec-h2">Our <em>Toppers</em> — UPSC CSE 2024</h2>
+        <div class="red-line"></div>
+        <p class="sec-p">Every rank is proof of the Ravindra method. 8 top-10 ranks in a single year.</p>
+      </div>
+      <div class="toppers-outer fi">
+        <div class="toppers-track" id="tTrack">
+          <div class="topper-card">
+            <div class="rank-badge r-gold">🥇 AIR 1</div>
+            <div class="tc-avatar av1">A</div>
+            <div class="tc-name">Anuj Agnihotri</div>
+            <div class="tc-rank">All India Rank — 1</div>
+            <div class="tc-state">New Delhi</div>
+            <div class="tc-service">Indian Administrative Service</div>
+            <div class="tc-quote">"The structured approach at Ravindra IAS — especially the mentorship sessions —
+              transformed how I approached every single answer."</div>
+          </div>
+          <div class="topper-card">
+            <div class="rank-badge r-silver">🥈 AIR 2</div>
+            <div class="tc-avatar av2">R</div>
+            <div class="tc-name">Rajeshwari M.</div>
+            <div class="tc-rank">All India Rank — 2</div>
+            <div class="tc-state">Chennai, Tamil Nadu</div>
+            <div class="tc-service">Indian Administrative Service</div>
+            <div class="tc-quote">"GS Foundation PCM covered everything with precision. The faculty here are more than
+              teachers — they are life mentors."</div>
+          </div>
+          <div class="topper-card">
+            <div class="rank-badge r-bronze">🥉 AIR 4</div>
+            <div class="tc-avatar av3">R</div>
+            <div class="tc-name">Raghav Joshi</div>
+            <div class="tc-rank">All India Rank — 4</div>
+            <div class="tc-state">Jaipur, Rajasthan</div>
+            <div class="tc-service">Indian Police Service</div>
+            <div class="tc-quote">"The Sure-Shot Test Series is a game-changer. Real exam pressure, honest feedback
+              after every single test."</div>
+          </div>
+          <div class="topper-card">
+            <div class="rank-badge r-other">AIR 5</div>
+            <div class="tc-avatar av4">I</div>
+            <div class="tc-name">Ishan Bhatnagar</div>
+            <div class="tc-rank">All India Rank — 5</div>
+            <div class="tc-state">Pune, Maharashtra</div>
+            <div class="tc-service">Indian Foreign Service</div>
+            <div class="tc-quote">"Two years with Ravindra IAS gave me depth in every subject. The essay and ethics
+              sessions were truly exceptional."</div>
+          </div>
+          <div class="topper-card">
+            <div class="rank-badge r-other">AIR 9</div>
+            <div class="tc-avatar av5">P</div>
+            <div class="tc-name">Priya Nair</div>
+            <div class="tc-rank">All India Rank — 9</div>
+            <div class="tc-state">Thiruvananthapuram</div>
+            <div class="tc-service">Indian Administrative Service</div>
+            <div class="tc-quote">"Daily CA practice and answer writing workshops raised my Mains score from 700 to 840
+              in a single cycle."</div>
+          </div>
+          <div class="topper-card">
+            <div class="rank-badge r-other">AIR 12</div>
+            <div class="tc-avatar av6">S</div>
+            <div class="tc-name">Sameer Khanna</div>
+            <div class="tc-rank">All India Rank — 12</div>
+            <div class="tc-state">Amritsar, Punjab</div>
+            <div class="tc-service">Indian Revenue Service</div>
+            <div class="tc-quote">"Failed twice before joining here. Personalized mentorship identified exactly what was
+              holding me back."</div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-ctrl fi">
+        <button class="sl-btn" onclick="slideTo(-1)">←</button>
+        <div class="sl-dots" id="slDots"></div>
+        <button class="sl-btn" onclick="slideTo(1)">→</button>
+      </div>
+      <div class="results-strip fi">
+        <div class="rs-cell"><span class="rs-num" data-count="1200">0</span><span class="rs-lbl">Total Selections</span>
+        </div>
+        <div class="rs-cell"><span class="rs-num" data-count="8">0</span><span class="rs-lbl">Top-10 Ranks 2024</span>
+        </div>
+        <div class="rs-cell"><span class="rs-num" data-count="150">0</span><span class="rs-lbl">Avg.
+            Selections/Year</span></div>
+        <div class="rs-cell"><span class="rs-num" data-count="15">0</span><span class="rs-lbl">Years of Results</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="sec-head fi">
+        <div class="sec-tag">Why Choose Us</div>
+        <h2 class="sec-h2">The <em>Ravindra Advantage</em></h2>
+        <div class="red-line"></div>
+        <p class="sec-p">What sets us apart — backed by 15 years of consistent, verifiable results.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card fi">
+          <div class="wc-icon wi-red">🏆</div>
+          <h4>Unmatched Track Record</h4>
+          <p>1200+ civil servants across IAS, IPS, IFS and allied services. 8 top-10 ranks in 2024 alone — 15
+            consecutive years of proven, documented results.</p>
+        </div>
+        <div class="why-card fi del-1">
+          <div class="wc-icon wi-blue">👨‍🏫</div>
+          <h4>Expert Faculty Panel</h4>
+          <p>50+ subject matter experts including former IAS/IPS officers, retired bureaucrats, and domain academics —
+            UPSC veterans who've seen it all from both sides.</p>
+        </div>
+        <div class="why-card fi del-2">
+          <div class="wc-icon wi-green">🎯</div>
+          <h4>Personalized Mentorship</h4>
+          <p>Every student gets a dedicated mentor — fortnightly 1-on-1 sessions with strategy refinement, answer
+            evaluation, and psychological support throughout.</p>
+        </div>
+        <div class="why-card fi">
+          <div class="wc-icon wi-gold">📊</div>
+          <h4>Data-Driven Strategy</h4>
+          <p>15 years of UPSC pattern analysis drives our topic prioritization, test frequency, and syllabus depth —
+            eliminating guesswork completely from your preparation.</p>
+        </div>
+        <div class="why-card fi del-1">
+          <div class="wc-icon wi-red">📱</div>
+          <h4>Seamless Hybrid Learning</h4>
+          <p>Classroom + LIVE online + recorded lectures on our mobile app. Study anywhere, anytime — even fully offline
+            with downloadable content library.</p>
+        </div>
+        <div class="why-card fi del-2">
+          <div class="wc-icon wi-blue">💰</div>
+          <h4>Scholarships & EMI Options</h4>
+          <p>Merit scholarships up to 75%, zero-cost EMI, and special fee waivers for SC/ST/OBC, women aspirants,
+            defence families, and repeat attempt candidates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section id="resources" class="section bg-grey">
+    <div class="container">
+      <div class="sec-head fi">
+        <div class="sec-tag">Study Resources</div>
+        <h2 class="sec-h2">Your Complete <em>Learning Arsenal</em></h2>
+        <div class="red-line"></div>
+        <p class="sec-p">Every resource you need — curated by UPSC experts, updated regularly, always at your
+          fingertips.</p>
+      </div>
+      <div class="res-grid">
+        <div class="res-card fi" onclick="openPdfModal('ca')"><span class="res-icon">📰</span>
+          <h4>Current Affairs Magazine</h4>
+          <p>Monthly compilation of The Hindu, IE, PIB, Yojana — distilled with UPSC relevance tags and Mains linkages.
+          </p><span class="res-tag">Monthly PDF</span>
+        </div>
+        <div class="res-card fi del-1" onclick="openPdfModal('notes')"><span class="res-icon">📝</span>
+          <h4>GS Notes Library</h4>
+          <p>450+ topic-wise notes covering all 4 GS papers — updated for 2026 with the latest syllabus mapping.</p>
+          <span class="res-tag">450+ Topics</span>
+        </div>
+        <div class="res-card fi del-2" onclick="toast('📹','Video portal opening...')"><span class="res-icon">📹</span>
+          <h4>Video Lectures</h4>
+          <p>2000+ hours of recorded lectures by expert faculty — downloadable and available offline via the mobile app.
+          </p><span class="res-tag">2000+ Hours</span>
+        </div>
+        <div class="res-card fi del-3" onclick="openPdfModal('pyq')"><span class="res-icon">📋</span>
+          <h4>PYQ Analysis</h4>
+          <p>10-year PYQ papers with model answers, topic frequency analysis, and examiner expectation breakdowns.</p>
+          <span class="res-tag">Free PDF</span>
+        </div>
+        <div class="res-card fi" onclick="openPdfModal('mindmaps')"><span class="res-icon">🗺️</span>
+          <h4>Mind Maps</h4>
+          <p>200+ visual mind maps for GS Papers I–IV making complex, interlinking topics easy to revise quickly.</p>
+          <span class="res-tag">200+ Maps</span>
+        </div>
+        <div class="res-card fi del-1" onclick="openQuizModal()"><span class="res-icon">✏️</span>
+          <h4>Daily Quiz & MCQs</h4>
+          <p>500+ question bank with new daily MCQs on current affairs and static GS — track accuracy and compare with
+            peers.</p><span class="res-tag">Daily Updated</span>
+        </div>
+        <div class="res-card fi del-2" onclick="openPdfModal('all')"><span class="res-icon">📥</span>
+          <h4>Free Downloads</h4>
+          <p>NCERT Books (6–12), NIOS material, IGNOU content, Yojana archives, PRS Capsule, government reports — all
+            free.</p><span class="res-tag">500+ PDFs Free</span>
+        </div>
+        <div class="res-card fi del-3" onclick="openQuizModal()"><span class="res-icon">📊</span>
+          <h4>AI Test Portal</h4>
+          <p>AI-powered platform with real-time analytics, rank prediction, weak-area detection, and comparative peer
+            insights.</p><span class="res-tag">AI-Powered</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACULTY -->
+  <section id="faculty" class="section">
+    <div class="container">
+      <div class="sec-head fi">
+        <div class="sec-tag">Expert Team</div>
+        <h2 class="sec-h2">Meet Our <em>Distinguished Faculty</em></h2>
+        <div class="red-line"></div>
+        <p class="sec-p">Former civil servants, top academics, and UPSC specialists — all committed to your success.</p>
+      </div>
+      <div class="faculty-grid">
+        <div class="fac-card fi">
+          <div class="fac-head">
+            <div class="fac-av">👨‍💼</div>
+            <div class="fac-name">Dr. Ravindra Singh</div>
+            <div class="fac-role">Founder & Director</div>
+          </div>
+          <div class="fac-body">
+            <p class="fac-bio">Former IAS Officer (1998 batch, MP cadre). Ph.D. Public Administration, JNU. 25+ years in
+              policy-making and administration. Personally mentored 300+ UPSC rank holders since founding the institute
+              in 2009.</p>
+            <div class="fac-subjects"><span class="fs">Polity & Governance</span><span class="fs">Essay
+                Writing</span><span class="fs">Ethics</span><span class="fs">Prelims Strategy</span></div>
+            <div class="fac-exp">⭐ 25+ Years Experience</div>
+            <div class="fac-demo-btn" onclick="toast('🎬','Demo lecture opening...')">Watch Demo Lecture →</div>
+          </div>
+        </div>
+        <div class="fac-card fi del-1">
+          <div class="fac-head">
+            <div class="fac-av">👩‍🏫</div>
+            <div class="fac-name">Prof. Meena Kumari</div>
+            <div class="fac-role">Economy & Environment Head</div>
+          </div>
+          <div class="fac-body">
+            <p class="fac-bio">Former Economic Adviser, Ministry of Finance. M.A. Economics, Delhi School of Economics.
+              Authored 3 books on Indian economic policy. Guest lecturer at IIM Ahmedabad and IIPA.</p>
+            <div class="fac-subjects"><span class="fs">Indian Economy</span><span class="fs">Environment</span><span
+                class="fs">Science & Tech</span><span class="fs">GS Paper III</span></div>
+            <div class="fac-exp">⭐ 18+ Years Experience</div>
+            <div class="fac-demo-btn" onclick="toast('🎬','Demo lecture opening...')">Watch Demo Lecture →</div>
+          </div>
+        </div>
+        <div class="fac-card fi del-2">
+          <div class="fac-head">
+            <div class="fac-av">👨‍✈️</div>
+            <div class="fac-name">Col. Arjun Mehta (Retd.)</div>
+            <div class="fac-role">Security & IR Faculty</div>
+          </div>
+          <div class="fac-body">
+            <p class="fac-bio">Retired Indian Army Colonel, specialist in strategic affairs. Former faculty at National
+              Defence College. Expert in India's foreign policy, security strategy, and the PSIR optional subject.</p>
+            <div class="fac-subjects"><span class="fs">International Relations</span><span class="fs">Security
+                Studies</span><span class="fs">PSIR Optional</span><span class="fs">Defence Policy</span></div>
+            <div class="fac-exp">⭐ 22+ Years Experience</div>
+            <div class="fac-demo-btn" onclick="toast('🎬','Demo lecture opening...')">Watch Demo Lecture →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section bg-off">
+    <div class="container">
+      <div class="sec-head fi">
+        <div class="sec-tag">Student Voices</div>
+        <h2 class="sec-h2">What Our <em>Students Say</em></h2>
+        <div class="red-line"></div>
+      </div>
+      <div class="test-grid">
+        <div class="test-card fi">
+          <div class="stars">★★★★★</div>
+          <div class="test-q">"The mentorship at Ravindra IAS is unmatched. My mentor reviewed every answer I wrote and
+            gave brutally honest, actionable feedback. That level of personal attention is incredibly rare."</div>
+          <div class="test-author">
+            <div class="ta-av av1">V</div>
+            <div>
+              <div class="ta-name">Vandana Singh</div>
+              <div class="ta-det">AIR 18 · IAS · UPSC CSE 2024</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card fi del-1">
+          <div class="stars">★★★★★</div>
+          <div class="test-q">"I was a working professional with only 5–6 hours daily. Ravindra IAS's recorded lectures
+            and weekend doubt sessions made it possible to crack UPSC in my very first attempt."</div>
+          <div class="test-author">
+            <div class="ta-av av3">K</div>
+            <div>
+              <div class="ta-name">Karthik Rajan</div>
+              <div class="ta-det">AIR 31 · IPS · UPSC CSE 2024</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card fi del-2">
+          <div class="stars">★★★★★</div>
+          <div class="test-q">"The current affairs magazine saves me 2–3 hours daily. Every article maps to specific
+            UPSC topics with Mains angle suggestions — it is an absolute game-changer for preparation."</div>
+          <div class="test-author">
+            <div class="ta-av av4">N</div>
+            <div>
+              <div class="ta-name">Neha Aggarwal</div>
+              <div class="ta-det">AIR 47 · IRS · UPSC CSE 2023</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="app-banner fi">
+        <div>
+          <div class="ab-h">📱 Learn On the Go</div>
+          <p class="ab-p">Download the Ravindra IAS app — all lectures, tests, current affairs, and mentor chat from
+            your phone, even offline.</p>
+          <div class="ab-btns">
+            <div class="ab-btn" onclick="toast('📱','Google Play Store opening...')">▶ Google Play</div>
+            <div class="ab-btn" onclick="toast('🍎','App Store opening...')"> App Store</div>
+            <div class="ab-btn" onclick="toast('💻','Student Portal opening...')">🌐 Student Portal</div>
+          </div>
+        </div>
+        <div class="ab-icon">📱</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="sec-head fi">
+        <div class="sec-tag">Help Center</div>
+        <h2 class="sec-h2">Frequently Asked <em>Questions</em></h2>
+        <div class="red-line"></div>
+      </div>
+      <div class="faq-wrap fi">
+        <div class="faq-controls">
+          <div class="faq-search"><input type="text" id="faqSearch" placeholder="🔍 Search for a question..."></div>
+          <div class="faq-add">
+            <input type="text" id="newQ" placeholder="Enter your question...">
+            <input type="text" id="newA" placeholder="Enter the answer...">
+            <button class="faq-add-btn" id="addFaqBtn">+ Add FAQ</button>
+          </div>
+          <p class="faq-no-result" id="faqNoResult">❌ No matching questions found.</p>
+        </div>
+        <div class="faq-list" id="faqList">
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">What is the duration of the GS Foundation PCM course? <span
+                class="faq-ico">+</span></div>
+            <div class="faq-a">
+              <p>The GS Foundation Prelims-cum-Mains course spans 10 months covering the complete UPSC CSE syllabus —
+                NCERTs, all 4 GS Papers, CSAT, Essay, and Ethics — with an integrated Prelims and Mains Test Series
+                throughout.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Are online classes interactive or just recorded? <span
+                class="faq-ico">+</span></div>
+            <div class="faq-a">
+              <p>All LIVE online sessions are fully interactive with real-time Q&A via chat or audio, polls, and
+                dedicated doubt-clearing sessions. Classes are also recorded and available for 6-month replay access on
+                our student portal and app.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">What study materials are included in the course? <span
+                class="faq-ico">+</span></div>
+            <div class="faq-a">
+              <p>Students receive: (1) Printed GS notes covering 450+ topics, (2) Monthly Current Affairs magazine, (3)
+                PYQ compilation with model answers, (4) Mind maps for GS I–IV, and (5) Full digital access to 2000+
+                video lectures, daily quiz bank, and our online test portal.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">Are scholarships available? How do I apply? <span
+                class="faq-ico">+</span></div>
+            <div class="faq-a">
+              <p>Yes. We offer merit scholarships of 25%, 50%, or 75% based on our entrance scholarship test. Special
+                concessions for SC/ST/OBC candidates, women aspirants, defence families, and repeat attempt candidates.
+                Contact us through the enrollment form for scholarship test details.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">What optional subjects are offered? <span
+                class="faq-ico">+</span></div>
+            <div class="faq-a">
+              <p>We currently offer specialized 4.5-month optional programmes in: Sociology, Political Science & IR
+                (PSIR), Geography, and Anthropology. Each includes teaching sessions, 5 full-length tests, individual
+                answer evaluation, and PYQ discussion sessions.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">How is mentorship structured at Ravindra IAS? <span
+                class="faq-ico">+</span></div>
+            <div class="faq-a">
+              <p>Every enrolled student is assigned a dedicated mentor within the first week — typically a senior
+                faculty member or cleared civil servant. Fortnightly 45-minute 1-on-1 sessions covering progress review,
+                study plan refinement, answer writing evaluation, and motivation throughout preparation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section bg-off">
+    <div class="container">
+      <div class="sec-head fi">
+        <div class="sec-tag">Admissions Open</div>
+        <h2 class="sec-h2">Begin Your <em>UPSC Journey</em> Today</h2>
+        <div class="red-line"></div>
+        <p class="sec-p">Enroll now or book a free demo class. Our counsellors will contact you within 24 hours.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="fi">
+          <h3 style="font-family:var(--ff-serif);font-size:1.35rem;color:var(--text);margin-bottom:1.2rem;">📍 Our
+            Campuses</h3>
+          <div class="campus-cards">
+            <div class="campus-card">
+              <h4>🏛️ New Delhi — Head Office</h4>
+              <p>1-B/7, Pusa Road, Old Rajinder Nagar, New Delhi — 110060</p>
+              <div class="phone">📞 +91-11-4560-7890 &nbsp;|&nbsp; Mon–Sat: 8 AM – 8 PM</div>
+            </div>
+            <div class="campus-card">
+              <h4>🏛️ Chennai Branch</h4>
+              <p>No. 63, Police Commissioner Office Road, Egmore, Chennai — 600008</p>
+              <div class="phone">📞 +91-44-4560-1234 &nbsp;|&nbsp; Mon–Sat: 9 AM – 7 PM</div>
+            </div>
+            <div class="campus-card">
+              <h4>🏛️ Bangalore Branch</h4>
+              <p>No. 12, Cunningham Road, Near MG Road, Bengaluru — 560052</p>
+              <div class="phone">📞 +91-80-4560-5678 &nbsp;|&nbsp; Mon–Sat: 9 AM – 7 PM</div>
+            </div>
+            <div class="campus-card">
+              <h4>🏛️ Indore Branch</h4>
+              <p>14, South Tukoganj, Near Rajwada, Indore — 452001, M.P.</p>
+              <div class="phone">📞 +91-73-1234-5678 &nbsp;|&nbsp; Mon–Sat: 9 AM – 7 PM</div>
+            </div>
+          </div>
+          <div class="socials">
+            <div class="soc-btn" onclick="toast('📘','Facebook...')">📘</div>
+            <div class="soc-btn" onclick="toast('📸','Instagram...')">📸</div>
+            <div class="soc-btn" onclick="toast('▶️','YouTube...')">▶️</div>
+            <div class="soc-btn" onclick="toast('💬','Telegram...')">💬</div>
+            <div class="soc-btn" onclick="toast('🐦','Twitter/X...')">🐦</div>
+            <div class="soc-btn" onclick="toast('💼','LinkedIn...')">💼</div>
+          </div>
+        </div>
+        <div class="form-box fi del-1">
+          <h3>📋 Enroll / Request Demo</h3>
+          <form id="enrollForm" onsubmit="handleForm(event)">
+            <div class="form-row">
+              <div class="fg"><label>First Name</label><input type="text" required placeholder="Rahul"></div>
+              <div class="fg"><label>Last Name</label><input type="text" required placeholder="Sharma"></div>
+            </div>
+            <div class="fg"><label>Email Address</label><input type="email" required placeholder="rahul@example.com">
+            </div>
+            <div class="fg"><label>Phone Number</label><input type="tel" required placeholder="+91 98765 43210"></div>
+            <div class="fg"><label>Select Programme</label>
+              <select required>
+                <option value="" disabled selected>Choose a programme</option>
+                <option>GS Foundation PCM 2027</option>
+                <option>2-Year GS Fledgling 2028</option>
+                <option>Mains Optional Subjects</option>
+                <option>Sure-Shot Test Series</option>
+                <option>StepUp Mentorship</option>
+                <option>Interview Preparation</option>
+              </select>
+            </div>
+            <div class="fg"><label>Learning Mode</label>
+              <select>
+                <option value="" disabled selected>Select mode</option>
+                <option>Classroom (Offline)</option>
+                <option>Live Online</option>
+                <option>Hybrid (Both)</option>
+              </select>
+            </div>
+            <div class="fg"><label>Message (Optional)</label><textarea
+                placeholder="Any specific queries, preferred batch timing, or scholarship enquiries..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="subBtn">Submit & Request Demo →</button>
+            <div class="success-bar" id="sucBar">✅ Received! Our counsellor will call you within 24 hours.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="fb-brand">
+          <div class="nav-logo" style="margin-bottom:.75rem;">
+            <div class="logo-mark">R</div>
+            <div class="logo-text"><span class="logo-name" style="color:#fff;">Ravindra IAS</span><span
+                class="logo-sub">UPSC Excellence Since 2009</span></div>
+          </div>
+          <p>India's most trusted UPSC coaching institute. 1200+ civil servants, 15 years of excellence, and a
+            commitment to accessible quality preparation for every aspirant across India.</p>
+          <div class="fb-social">
+            <div class="fb-soc" onclick="toast('📘','Facebook...')">📘</div>
+            <div class="fb-soc" onclick="toast('📸','Instagram...')">📸</div>
+            <div class="fb-soc" onclick="toast('▶️','YouTube...')">▶️</div>
+            <div class="fb-soc" onclick="toast('💬','Telegram...')">💬</div>
+          </div>
+        </div>
+        <div class="fc">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#faculty">Faculty</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="fc">
+          <h5>Programmes</h5>
+          <ul>
+            <li><a href="#courses">GS Foundation PCM</a></li>
+            <li><a href="#courses">2-Year Fledgling</a></li>
+            <li><a href="#courses">Optional Subjects</a></li>
+            <li><a href="#courses">Test Series</a></li>
+            <li><a href="#courses">Mentorship</a></li>
+            <li><a href="#courses">Interview Prep</a></li>
+          </ul>
+        </div>
+        <div class="fc">
+          <h5>Contact Us</h5>
+          <ul>
+            <li><a href="#">📞 +91-87501-87501</a></li>
+            <li><a href="#">✉️ info@ravindraiasacademy.com</a></li>
+            <li><a href="#">📍 Old Rajinder Nagar, Delhi</a></li>
+            <li><a href="#">📍 Egmore, Chennai</a></li>
+            <li><a href="#">📍 MG Road, Bangalore</a></li>
+            <li><a href="#">📍 South Tukoganj, Indore</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="fb-inner">
+      <p class="fb-copy">© 2026 Ravindra IAS Academy Pvt. Ltd. All Rights Reserved.</p>
+      <div class="fb-links">
+        <a href="#" onclick="toast('📄','Privacy Policy...')">Privacy Policy</a>
+        <a href="#" onclick="toast('📄','Terms of Use...')">Terms of Use</a>
+        <a href="#" onclick="toast('💰','Refund Policy...')">Refund Policy</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toastEl"><span class="toast-icon" id="toastIco">✅</span><span id="toastTxt"></span></div>
+
+  <!-- ═══════════ QUIZ MODAL ═══════════ -->
+  <div class="modal-overlay" id="quizModal" onclick="closeOnBg(event,'quizModal')">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="quizModalTitle">🧠 Daily UPSC Quiz — March 28</h3>
+        <button class="modal-close" onclick="closeModal('quizModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="quizContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ PDF MODAL ═══════════ -->
+  <div class="modal-overlay" id="pdfModal" onclick="closeOnBg(event,'pdfModal')">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="pdfModalTitle">📥 Free Downloads</h3>
+        <button class="modal-close" onclick="closeModal('pdfModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <!-- FILE LIST VIEW -->
+        <div id="pdfListView">
+          <div class="pdf-list" id="pdfList"></div>
+        </div>
+        <!-- PDF CONTENT VIEW -->
+        <div class="pdf-viewer" id="pdfViewer">
+          <div class="pdf-viewer-head">
+            <button class="pdf-back" onclick="showPdfList()">← Back to List</button>
+            <span class="pdf-viewer-title" id="pdfViewerTitle"></span>
+          </div>
+          <div class="pdf-content" id="pdfViewerContent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
+
 </html>
