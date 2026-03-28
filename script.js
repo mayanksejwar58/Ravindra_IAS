@@ -352,3 +352,87 @@ function handleForm(e){e.preventDefault();const btn=document.getElementById('sub
 /* ── TOAST ── */
 let toastTimer;
 function toast(icon,msg){document.getElementById('toastIco').textContent=icon;document.getElementById('toastTxt').textContent=msg;const el=document.getElementById('toastEl');el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3200);}
+const canvas = document.getElementById("bgCanvas");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+/* ===== PARTICLES INIT ===== */
+const PARTICLE_COUNT = window.innerWidth < 768 ? 50 : 120;
+
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 2 + 0.5,
+    speedX: (Math.random() - 0.5) * 0.4,
+    speedY: (Math.random() - 0.5) * 0.4
+  });
+}
+
+/* ===== ANIMATION ===== */
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach(p => {
+    p.x += p.speedX;
+    p.y += p.speedY;
+
+    // bounce edges
+    if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+    // draw particle
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
+    ctx.fill();
+
+    // connect lines
+    particles.forEach(p2 => {
+      let dx = p.x - p2.x;
+      let dy = p.y - p2.y;
+      let dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < 100) {
+        ctx.beginPath();
+        ctx.strokeStyle = "rgba(255,255,255,0.1)";
+        ctx.lineWidth = 1;
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+      }
+    });
+  });
+
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+/* ===== MOUSE GLOW ===== */
+const glow = document.querySelector(".bg-glow");
+
+window.addEventListener("mousemove", e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+
+  glow.style.left = mouse.x + "px";
+  glow.style.top = mouse.y + "px";
+});
+
+/* ===== PARALLAX EFFECT ===== */
+window.addEventListener("mousemove", e => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 20;
+  const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+  canvas.style.transform = `translate(${x}px, ${y}px)`;
+});
