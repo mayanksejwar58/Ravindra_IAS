@@ -662,3 +662,24 @@ body::before {
   z-index: -1;
   pointer-events: none;
 }
+/* ===== GALAXY BACKGROUND ===== */
+#galaxyCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -5;
+  background: radial-gradient(ellipse at bottom, #0b0f2a 0%, #000000 100%);
+}
+
+/* optional glow stars overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.05), transparent 40%),
+              radial-gradient(circle at 70% 60%, rgba(255,255,255,0.05), transparent 40%);
+  z-index: -4;
+  pointer-events: none;
+}

@@ -436,3 +436,91 @@ window.addEventListener("mousemove", e => {
 
   canvas.style.transform = `translate(${x}px, ${y}px)`;
 });
+const canvas = document.getElementById("galaxyCanvas");
+const ctx = canvas.getContext("2d");
+
+let stars = [];
+let mouse = { x: 0, y: 0 };
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+/* ===== STAR CLASS ===== */
+class Star {
+  constructor() {
+    this.reset();
+  }
+
+  reset() {
+    this.x = Math.random() * canvas.width - canvas.width / 2;
+    this.y = Math.random() * canvas.height - canvas.height / 2;
+    this.z = Math.random() * canvas.width;
+
+    this.size = Math.random() * 1.5;
+  }
+
+  update() {
+    this.z -= 1;
+
+    if (this.z <= 0) {
+      this.reset();
+      this.z = canvas.width;
+    }
+  }
+
+  draw() {
+    let sx = (this.x / this.z) * canvas.width + canvas.width / 2;
+    let sy = (this.y / this.z) * canvas.height + canvas.height / 2;
+
+    let r = this.size * (canvas.width / this.z);
+
+    ctx.beginPath();
+    ctx.arc(sx, sy, r, 0, Math.PI * 2);
+    ctx.fillStyle = "white";
+    ctx.fill();
+  }
+}
+
+/* ===== INIT ===== */
+const STAR_COUNT = window.innerWidth < 768 ? 300 : 800;
+
+for (let i = 0; i < STAR_COUNT; i++) {
+  stars.push(new Star());
+}
+
+/* ===== GALAXY SWIRL ===== */
+let angle = 0;
+
+function animate() {
+  ctx.fillStyle = "rgba(0,0,0,0.4)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  angle += 0.0005;
+
+  ctx.save();
+  ctx.translate(canvas.width / 2, canvas.height / 2);
+  ctx.rotate(angle);
+
+  stars.forEach(star => {
+    star.update();
+    star.draw();
+  });
+
+  ctx.restore();
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+/* ===== MOUSE PARALLAX ===== */
+window.addEventListener("mousemove", e => {
+  let x = (e.clientX / window.innerWidth - 0.5) * 30;
+  let y = (e.clientY / window.innerHeight - 0.5) * 30;
+
+  canvas.style.transform = `translate(${x}px, ${y}px)`;
+});
